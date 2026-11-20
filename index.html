@@ -19,19 +19,16 @@
 <body>
 
 <!-- ==================== BACKGROUND LAYERS ==================== -->
+<!-- The orbs have been removed. The nebula is now built entirely with CSS gradients. -->
 <div class="space-bg" aria-hidden="true">
   <div class="nebula nebula-a"></div>
   <div class="nebula nebula-b"></div>
   <div class="nebula nebula-c"></div>
+  <div class="nebula nebula-d"></div>
+  <div class="noise-overlay"></div>
   <div class="grid-veil"></div>
 </div>
 <canvas id="starfield" aria-hidden="true"></canvas>
-<div class="orbs" aria-hidden="true">
-  <div class="orb orb-1" data-depth="0.30"></div>
-  <div class="orb orb-2" data-depth="0.16"><span class="ring"></span></div>
-  <div class="orb orb-3" data-depth="0.24"></div>
-  <div class="orb orb-4" data-depth="0.12"></div>
-</div>
 
 <!-- ==================== HEADER ==================== -->
 <header class="site-header" id="header">
@@ -153,8 +150,6 @@
         <h2>Projects</h2>
         <p>Each card opens a full breakdown: the problem, the objective, what I actually did, and the evidence.</p>
       </header>
-
-      <!-- Cards rendered by script.js from the `projects` array -->
       <div class="project-grid" id="projectGrid"></div>
     </div>
   </section>
@@ -196,21 +191,6 @@
             <a class="ev-btn is-placeholder" href="#" data-evidence="GATE 2025 scorecard">Scorecard<span class="ev-tag">placeholder</span></a>
           </div>
         </article>
-
-        <!-- To add a CTF / hackathon, duplicate this block and fill it in.
-        <article class="card reveal">
-          <div class="comp-head">
-            <h3>Competition name</h3>
-            <span class="badge">Result / placement</span>
-          </div>
-          <p class="muted">What the competition involved.</p>
-          <h4 class="mini-head">Challenges / areas covered</h4>
-          <div class="chips"><span class="chip">Area</span></div>
-          <h4 class="mini-head">What I learned</h4>
-          <ul class="m-list"><li>…</li></ul>
-          <div class="ev-row"><a class="ev-btn" href="#">Write-up</a></div>
-        </article>
-        -->
       </div>
     </div>
   </section>
@@ -225,7 +205,6 @@
       </header>
 
       <div class="card-grid">
-        <!-- TryHackMe — REPLACE the numbers and the profile URL with your own -->
         <article class="card reveal">
           <div class="comp-head">
             <h3>TryHackMe</h3>
@@ -250,7 +229,6 @@
           </div>
         </article>
 
-        <!-- ONGC — real content from the profile -->
         <article class="card reveal" style="--d:100ms">
           <div class="comp-head">
             <h3>ONGC — Industrial Exposure</h3>
@@ -289,7 +267,6 @@
       </header>
 
       <div class="card-grid">
-        <!-- REPLACE this placeholder card with your real certifications. Duplicate the block for each one. -->
         <article class="card placeholder-card reveal">
           <span class="ph-badge">Placeholder</span>
           <h3>Certification name</h3>
@@ -360,7 +337,6 @@
       </header>
 
       <div class="contact-grid">
-        <!-- REPLACE all three hrefs below -->
         <a class="card contact-card is-placeholder reveal" href="#" data-evidence="GitHub profile URL">
           <span class="contact-label">GitHub</span>
           <span class="contact-value">github.com/your-username</span>

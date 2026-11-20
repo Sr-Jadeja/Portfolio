@@ -321,7 +321,6 @@ function showToast(msg) {
 /* ---------- Global click / keyboard -------------------------- */
 function initGlobalHandlers() {
   document.addEventListener("click", (e) => {
-    // Placeholder links first — they should never navigate
     const ph = e.target.closest(".is-placeholder");
     if (ph) {
       e.preventDefault();
@@ -329,13 +328,11 @@ function initGlobalHandlers() {
       showToast(`Placeholder — replace with: ${label}`);
       return;
     }
-    // Project card
     const card = e.target.closest(".project-card");
     if (card) {
       openModal(Number(card.dataset.project));
       return;
     }
-    // Modal close (backdrop or button)
     if (e.target.closest("[data-close]")) {
       closeModal();
     }
@@ -409,38 +406,55 @@ function initReveal() {
   );
   els.forEach((el) => io.observe(el));
 
-  // Safety net: if anything is still hidden after 3s, reveal it.
   setTimeout(() => {
     $$(".reveal:not(.visible)").forEach((el) => el.classList.add("visible"));
   }, 3000);
 }
 
-/* ---------- Starfield canvas -------------------------------- */
+/* ---------- Starfield canvas (Enhanced for Galaxy look) ------ */
 function initStarfield() {
   const canvas = $("#starfield");
   if (!canvas) return;
   const ctx = canvas.getContext("2d");
   let w, h, dpr;
   let stars = [];
+  let flares = [];
   let mouseX = 0, mouseY = 0;
   let targetX = 0, targetY = 0;
 
   function buildStars() {
-    const count = Math.min(500, Math.round((w * h) / 9000));
+    // Increase count for a richer galaxy feel
+    const count = Math.min(700, Math.round((w * h) / 6000));
     stars = [];
+    flares = [];
+    
     for (let i = 0; i < count; i++) {
       const depth = Math.random();
-      const isCyan = Math.random() < 0.18;
-      const isViolet = !isCyan && Math.random() < 0.18;
+      const isCyan = Math.random() < 0.15;
+      const isViolet = !isCyan && Math.random() < 0.2;
+      const isWarm = !isCyan && !isViolet && Math.random() < 0.1;
+      
       stars.push({
         x: Math.random() * w,
         y: Math.random() * h,
-        r: 0.4 + depth * 1.4,
-        baseAlpha: 0.3 + depth * 0.6,
+        r: 0.3 + depth * 1.2,
+        baseAlpha: 0.2 + depth * 0.7,
         twinkle: Math.random() * Math.PI * 2,
-        twinkleSpeed: 0.0008 + Math.random() * 0.0015,
+        twinkleSpeed: 0.0005 + Math.random() * 0.0015,
         depth,
-        hue: isCyan ? 190 : isViolet ? 275 : 215,
+        hue: isCyan ? 190 : isViolet ? 275 : isWarm ? 350 : 215,
+      });
+    }
+
+    // Add a few large, glowing "hero" stars with flare effects
+    for (let i = 0; i < 8; i++) {
+      flares.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        r: 1.5 + Math.random() * 2.5,
+        alpha: 0.6 + Math.random() * 0.4,
+        depth: 0.8 + Math.random() * 0.2,
+        twinkle: Math.random() * Math.PI * 2,
       });
     }
   }
@@ -462,22 +476,59 @@ function initStarfield() {
     const dt = Math.min(now - last, 60);
     last = now;
 
+    // Smooth parallax mouse tracking
     mouseX += (targetX - mouseX) * 0.05;
     mouseY += (targetY - mouseY) * 0.05;
 
     ctx.clearRect(0, 0, w, h);
+    
+    // Draw standard stars
     for (const s of stars) {
       s.twinkle += s.twinkleSpeed * dt;
       const alpha = s.baseAlpha * (0.65 + 0.35 * Math.sin(s.twinkle));
-      const px = s.x + mouseX * s.depth * 14;
-      const py = s.y + mouseY * s.depth * 14;
+      const px = s.x + mouseX * s.depth * 20;
+      const py = s.y + mouseY * s.depth * 20;
+      // Wrap around edges for infinite parallax
       const wx = ((px % w) + w) % w;
       const wy = ((py % h) + h) % h;
+      
       ctx.beginPath();
       ctx.fillStyle = `hsla(${s.hue}, 90%, ${75 + s.depth * 15}%, ${alpha})`;
       ctx.arc(wx, wy, s.r, 0, Math.PI * 2);
       ctx.fill();
     }
+
+    // Draw flare/hero stars (like the bright ones in the image)
+    for (const f of flares) {
+      f.twinkle += 0.001 * dt;
+      const alpha = f.alpha * (0.7 + 0.3 * Math.sin(f.twinkle));
+      const px = f.x + mouseX * f.depth * 30;
+      const py = f.y + mouseY * f.depth * 30;
+      const wx = ((px % w) + w) % w;
+      const wy = ((py % h) + h) % h;
+
+      // Outer glow
+      const gradient = ctx.createRadialGradient(wx, wy, 0, wx, wy, f.r * 4);
+      gradient.addColorStop(0, `rgba(255, 255, 255, ${alpha})`);
+      gradient.addColorStop(0.4, `rgba(180, 220, 255, ${alpha * 0.3})`);
+      gradient.addColorStop(1, 'transparent');
+      
+      ctx.beginPath();
+      ctx.fillStyle = gradient;
+      ctx.arc(wx, wy, f.r * 4, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Cross flare lines
+      ctx.beginPath();
+      ctx.strokeStyle = `rgba(255, 255, 255, ${alpha * 0.4})`;
+      ctx.lineWidth = 0.5;
+      ctx.moveTo(wx - f.r * 6, wy);
+      ctx.lineTo(wx + f.r * 6, wy);
+      ctx.moveTo(wx, wy - f.r * 6);
+      ctx.lineTo(wx, wy + f.r * 6);
+      ctx.stroke();
+    }
+
     requestAnimationFrame(frame);
   }
 
@@ -502,12 +553,11 @@ function initStarfield() {
   else requestAnimationFrame(frame);
 }
 
-/* ---------- Parallax for orbs & nebulas ---------------------- */
+/* ---------- Parallax for Nebulas (orbs removed) -------------- */
 function initParallax() {
   if (prefersReducedMotion) return;
-  const orbs = $$(".orb");
   const nebulas = $$(".nebula");
-  if (!orbs.length && !nebulas.length) return;
+  if (!nebulas.length) return;
 
   let mx = 0, my = 0, tx = 0, ty = 0;
   let sy = window.scrollY;
@@ -519,20 +569,13 @@ function initParallax() {
   window.addEventListener("scroll", () => { sy = window.scrollY; }, { passive: true });
 
   function loop() {
-    mx += (tx - mx) * 0.06;
-    my += (ty - my) * 0.06;
-
-    orbs.forEach((orb) => {
-      const depth = parseFloat(orb.dataset.depth) || 0.2;
-      const x = mx * depth * 60;
-      const y = my * depth * 60 - sy * depth * 0.06;
-      orb.style.transform = `translate3d(${x}px, ${y}px, 0)`;
-    });
+    mx += (tx - mx) * 0.04;
+    my += (ty - my) * 0.04;
 
     nebulas.forEach((neb, i) => {
-      const depth = 0.10 + i * 0.05;
-      const x = mx * depth * 80;
-      const y = my * depth * 80 - sy * depth * 0.10;
+      const depth = 0.15 + i * 0.05;
+      const x = mx * depth * 100;
+      const y = my * depth * 100 - sy * depth * 0.1;
       neb.style.translate = `${x}px ${y}px`;
     });
 

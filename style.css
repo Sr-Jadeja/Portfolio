@@ -1,6 +1,7 @@
 /* ============================================================
-   Portfolio — galaxy theme
-   Palette: deep-space navy, cyan→violet→magenta gradient
+   Portfolio — galaxy theme (Deep Space Nebula Update)
+   Removed plastic planets. Replaced with layered CSS gradients,
+   noise overlay, and rich cosmic colors.
    ============================================================ */
 
 :root {
@@ -49,7 +50,7 @@ body {
 a { color: inherit; }
 
 /* ============================================================
-   BACKGROUND: nebula + grid + canvas + planets
+   BACKGROUND: Deep Space Nebula
    ============================================================ */
 
 .space-bg {
@@ -57,49 +58,83 @@ a { color: inherit; }
   inset: 0;
   z-index: -2;
   overflow: hidden;
-  background:
-    radial-gradient(ellipse 80% 60% at 50% -10%, #0e1330 0%, transparent 60%),
-    radial-gradient(ellipse 60% 50% at 100% 100%, #130c2a 0%, transparent 55%),
-    var(--bg);
+  background-color: #030008;
+  /* Base layer of deep space gradients */
+  background-image: 
+    radial-gradient(circle at 15% 30%, rgba(46, 17, 82, 0.4) 0%, transparent 50%),
+    radial-gradient(circle at 85% 70%, rgba(17, 41, 82, 0.4) 0%, transparent 50%);
 }
 
+/* Complex nebula clouds using radial gradients to simulate the provided image */
 .nebula {
   position: absolute;
   border-radius: 50%;
-  filter: blur(90px);
-  opacity: 0.55;
-  mix-blend-mode: screen;
+  filter: blur(100px);
+  opacity: 0.65;
   will-change: transform, translate;
+  mix-blend-mode: screen;
 }
+
 .nebula-a {
-  width: 60vw; height: 60vw; max-width: 800px; max-height: 800px;
-  top: -20%; left: -15%;
-  background: radial-gradient(circle, rgba(110, 231, 255, 0.30), transparent 70%);
-  animation: drift 28s ease-in-out infinite alternate;
+  width: 80vw; height: 80vw; max-width: 1000px; max-height: 1000px;
+  top: -10%; left: -10%;
+  /* Deep violet/purple */
+  background: radial-gradient(circle, rgba(107, 33, 168, 0.4) 0%, rgba(76, 29, 149, 0.2) 40%, transparent 70%);
+  animation: drift-a 35s ease-in-out infinite alternate;
 }
+
 .nebula-b {
-  width: 55vw; height: 55vw; max-width: 720px; max-height: 720px;
-  bottom: -25%; right: -15%;
-  background: radial-gradient(circle, rgba(167, 139, 250, 0.30), transparent 70%);
-  animation: drift 34s ease-in-out infinite alternate-reverse;
+  width: 70vw; height: 70vw; max-width: 900px; max-height: 900px;
+  bottom: -20%; right: -10%;
+  /* Magenta/Pink glow */
+  background: radial-gradient(circle, rgba(192, 38, 211, 0.3) 0%, rgba(134, 25, 143, 0.15) 40%, transparent 70%);
+  animation: drift-b 42s ease-in-out infinite alternate-reverse;
 }
+
 .nebula-c {
-  width: 40vw; height: 40vw; max-width: 520px; max-height: 520px;
-  top: 35%; left: 40%;
-  background: radial-gradient(circle, rgba(240, 171, 252, 0.16), transparent 70%);
-  animation: drift 40s ease-in-out infinite alternate;
+  width: 60vw; height: 60vw; max-width: 800px; max-height: 800px;
+  top: 30%; left: 20%;
+  /* Cyan/Blue accent */
+  background: radial-gradient(circle, rgba(14, 165, 233, 0.25) 0%, rgba(2, 132, 199, 0.1) 40%, transparent 60%);
+  animation: drift-c 38s ease-in-out infinite alternate;
 }
-@keyframes drift {
+
+.nebula-d {
+  width: 50vw; height: 50vw; max-width: 700px; max-height: 700px;
+  bottom: 10%; left: 10%;
+  /* Deep navy/indigo */
+  background: radial-gradient(circle, rgba(49, 46, 129, 0.4) 0%, transparent 60%);
+  animation: drift-a 28s ease-in-out infinite alternate-reverse;
+}
+
+/* Subtle noise overlay to give the nebula a realistic, non-plastic texture */
+.noise-overlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0.15;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+@keyframes drift-a {
   from { transform: translate3d(0, 0, 0) scale(1); }
-  to   { transform: translate3d(4%, 3%, 0) scale(1.08); }
+  to   { transform: translate3d(6%, 4%, 0) scale(1.1); }
+}
+@keyframes drift-b {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to   { transform: translate3d(-5%, -6%, 0) scale(1.05); }
+}
+@keyframes drift-c {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to   { transform: translate3d(-4%, 5%, 0) scale(1.08); }
 }
 
 .grid-veil {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
   background-size: 64px 64px;
   -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, #000 0%, transparent 85%);
           mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, #000 0%, transparent 85%);
@@ -113,66 +148,6 @@ a { color: inherit; }
   pointer-events: none;
   width: 100%;
   height: 100%;
-}
-
-.orbs {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.orb {
-  position: absolute;
-  border-radius: 50%;
-  will-change: transform;
-}
-
-.orb-1 {
-  width: 120px; height: 120px;
-  top: 18%; right: 8%;
-  background: radial-gradient(circle at 30% 30%, #7dd3fc, #1e3a8a 70%, #0b1030);
-  box-shadow: 0 0 60px rgba(110, 231, 255, 0.25), inset -12px -12px 30px rgba(0, 0, 0, 0.6);
-  animation: float 14s ease-in-out infinite;
-}
-.orb-2 {
-  width: 56px; height: 56px;
-  top: 62%; left: 6%;
-  background: radial-gradient(circle at 30% 30%, #c4b5fd, #6d28d9 70%, #1a0b30);
-  box-shadow: 0 0 40px rgba(167, 139, 250, 0.30), inset -6px -6px 18px rgba(0, 0, 0, 0.6);
-  animation: float 11s ease-in-out infinite 1s;
-}
-.orb-2 .ring {
-  position: absolute;
-  inset: -18px;
-  border-radius: 50%;
-  border: 1px solid rgba(196, 181, 253, 0.30);
-  transform: rotate(-22deg) scaleY(0.42);
-  box-shadow: 0 0 18px rgba(196, 181, 253, 0.20);
-  animation: ring-spin 22s linear infinite;
-}
-@keyframes ring-spin {
-  from { transform: rotate(-22deg) scaleY(0.42) rotate(0deg); }
-  to   { transform: rotate(-22deg) scaleY(0.42) rotate(360deg); }
-}
-.orb-3 {
-  width: 26px; height: 26px;
-  top: 32%; left: 14%;
-  background: radial-gradient(circle at 30% 30%, #fda4af, #be123c 70%, #2a0718);
-  box-shadow: 0 0 24px rgba(253, 164, 175, 0.30), inset -3px -3px 10px rgba(0, 0, 0, 0.6);
-  animation: float 9s ease-in-out infinite 2s;
-}
-.orb-4 {
-  width: 16px; height: 16px;
-  top: 78%; right: 22%;
-  background: radial-gradient(circle at 30% 30%, #5eead4, #0f766e 70%, #041a18);
-  box-shadow: 0 0 18px rgba(94, 234, 212, 0.30), inset -2px -2px 8px rgba(0, 0, 0, 0.6);
-  animation: float 13s ease-in-out infinite 0.5s;
-}
-@keyframes float {
-  0%, 100% { translate: 0 0; }
-  50%      { translate: 0 -14px; }
 }
 
 /* ============================================================
@@ -1010,7 +985,7 @@ a { color: inherit; }
 }
 
 /* ============================================================
-   REVEAL ANIMATION (only active once JS runs)
+   REVEAL ANIMATION
    ============================================================ */
 
 html.js-enabled .reveal {
@@ -1071,9 +1046,6 @@ html.js-enabled .reveal.visible {
   .modal-body { padding: 4px 20px 24px; }
   .modal-close { margin-top: 8px; margin-right: 8px; }
 
-  .orb-1 { width: 80px; height: 80px; top: 8%; right: -12px; }
-  .orb-2 { width: 40px; height: 40px; }
-  .orb-3 { display: none; }
   .terminal { font-size: 0.78rem; }
   .terminal-body { padding: 16px; }
 }
@@ -1096,6 +1068,6 @@ html.js-enabled .reveal.visible {
     transition-duration: 0.01ms !important;
   }
   html.js-enabled .reveal { opacity: 1; transform: none; }
-  .nebula, .orb, .terminal, .caret, .scroll-cue span,
-  .orb-2 .ring, .project-status.wip::before { animation: none !important; }
+  .nebula, .terminal, .caret, .scroll-cue span,
+  .project-status.wip::before { animation: none !important; }
 }
