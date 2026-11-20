@@ -152,3 +152,34 @@ nav.querySelectorAll("a").forEach(link => link.addEventListener("click", () => {
 document.getElementById("year").textContent = new Date().getFullYear();
 
 // Update the identity and social/contact URLs in index.html before publishing.
+
+// Progressive, accessible scroll reveals. Content remains visible if JS or
+// IntersectionObserver is unavailable, and reduced-motion preferences win.
+(function initScrollMotion() {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion || !('IntersectionObserver' in window)) return;
+
+  const selectors = [
+    '.hero-copy', '.hero-visual', '.section-heading', '.about-main', '.about-aside',
+    '.project-toolbar', '.project-card', '.timeline-item', '.milestone-strip > div',
+    '.learning-card', '.empty-evidence', '.simple-card', '.contact-panel'
+  ];
+  const revealTargets = selectors.flatMap(selector => Array.from(document.querySelectorAll(selector)));
+
+  revealTargets.forEach((element, index) => {
+    element.dataset.reveal = (element.classList.contains('hero-visual') || element.classList.contains('about-aside')) ? 'right' : 'up';
+    if (element.classList.contains('project-card') || element.classList.contains('simple-card')) {
+      element.style.setProperty('--reveal-delay', `${(index % 3) * 85}ms`);
+    }
+  });
+
+  document.documentElement.classList.add('js-motion');
+  const observer = new IntersectionObserver((entries, activeObserver) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-visible');
+      activeObserver.unobserve(entry.target);
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -45px 0px' });
+  revealTargets.forEach(element => observer.observe(element));
+})();
