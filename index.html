@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090d18">
+  <meta name="description" content="AI and machine learning portfolio exploring computer vision, agentic AI, RAG systems and MLOps.">
+  <title>Your Name | AI/ML Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="Go to homepage"><span class="brand-mark">A<span>/</span>ML</span><span class="brand-caption">PROJECT JOURNAL</span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span></button>
+    <nav class="nav" id="nav">
+      <a href="#about">About</a><a href="#projects">Projects <span class="nav-count">04</span></a>
+      <a href="#learning">Learning</a><a href="#credentials">Credentials</a><a href="#contact" class="nav-contact">Let's connect <span>↗</span></a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero section-wrap" id="home">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="status-dot"></span> AI / MACHINE LEARNING ENGINEERING <span class="eyebrow-line"></span> <span class="mono">PORTFOLIO — 2026</span></div>
+        <h1>Building intelligent<br>systems for <span class="gradient-text">real-world</span><br>problems<span class="accent-dot">.</span></h1>
+        <p class="hero-intro">Hi, I'm <strong>Your Name</strong> — an AI enthusiast and M.Tech student exploring the intersection of machine learning, computer vision, and agentic systems.</p>
+        <p class="hero-sub">I learn by building: experimenting with ideas, solving practical problems, and turning models into useful applications.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#projects">Explore my projects <span>↓</span></a>
+          <a class="button button-ghost" href="https://github.com/your-username" target="_blank" rel="noreferrer">GitHub <span>↗</span></a>
+          <a class="button button-ghost" href="https://www.linkedin.com/in/your-linkedin/" target="_blank" rel="noreferrer">LinkedIn <span>↗</span></a>
+        </div>
+        <div class="hero-meta"><span><i class="meta-line"></i> Based in India</span><span><i class="meta-line"></i> M.Tech Artificial Intelligence · NIT Jalandhar</span></div>
+      </div>
+      <div class="hero-visual" aria-label="Decorative AI system illustration">
+        <div class="visual-top"><span class="mono">CURRENT FOCUS</span><span class="live-label"><i></i> IN PROGRESS</span></div>
+        <div class="orbit orbit-a"></div><div class="orbit orbit-b"></div><div class="orbit orbit-c"></div>
+        <div class="core"><div class="core-inner"><span>AI</span><small>LAB</small></div></div>
+        <span class="orbit-node node-one">CV</span><span class="orbit-node node-two">RAG</span><span class="orbit-node node-three">ML</span>
+        <div class="visual-bottom"><span class="mono">RESEARCH · ENGINEERING · EXPERIMENTS</span><span class="mono">01 / 04</span></div>
+      </div>
+      <div class="scroll-note"><span></span> SCROLL TO EXPLORE</div>
+    </section>
+
+    <section class="section-wrap about-section" id="about">
+      <div class="section-heading"><div><span class="section-kicker">01 — THE PERSON BEHIND THE PROJECTS</span><h2>Curiosity, meet <span class="gradient-text">engineering.</span></h2></div><span class="section-index">ABOUT / 01</span></div>
+      <div class="about-grid">
+        <div class="about-main"><p class="lead">I enjoy understanding how intelligent systems work — and, more importantly, figuring out how to make them useful.</p>
+          <p>My journey started in Petroleum Engineering and grew into a deeper interest in data, computation, and artificial intelligence. Today, as an M.Tech student in Artificial Intelligence at NIT Jalandhar, I spend my time building and experimenting across machine learning, deep learning, and applied AI.</p>
+          <p>I'm particularly interested in computer vision and medical image analysis, retrieval-augmented generation, agentic workflows, and the engineering practices that make ML systems reliable. I like projects that involve more than training a model: data pipelines, evaluation, deployment, optimization, and understanding what the results mean in practice.</p>
+          <p>Outside research, I enjoy exploring new tools, strengthening fundamentals, and learning through hands-on implementation.</p>
+        </div>
+        <aside class="about-aside"><div class="aside-label mono">A FEW THINGS I WORK WITH</div>
+          <div class="skill-group"><span>01</span><div><strong>Machine Learning</strong><small>PyTorch · TensorFlow · Scikit-learn</small></div></div>
+          <div class="skill-group"><span>02</span><div><strong>Applied AI</strong><small>Computer Vision · RAG · LangGraph</small></div></div>
+          <div class="skill-group"><span>03</span><div><strong>Data & Engineering</strong><small>Python · SQL · NumPy · Pandas</small></div></div>
+          <div class="skill-group"><span>04</span><div><strong>MLOps & Deployment</strong><small>MLflow · DVC · Streamlit · Gradio</small></div></div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section-wrap projects-section" id="projects">
+      <div class="section-heading"><div><span class="section-kicker">02 — SELECTED WORK / PROJECT LAB</span><h2>Ideas turned into <span class="gradient-text">systems.</span></h2><p class="section-description">A closer look at the questions, experiments, engineering decisions, and outcomes behind my work.</p></div><span class="section-index">PROJECTS / 04</span></div>
+      <div class="project-toolbar"><span class="mono">BROWSE PROJECTS</span><div class="filter-group" role="group" aria-label="Filter projects"><button class="filter-btn active" data-filter="all">All <span>04</span></button><button class="filter-btn" data-filter="research">Research</button><button class="filter-btn" data-filter="genai">GenAI</button><button class="filter-btn" data-filter="mlops">ML / MLOps</button></div></div>
+      <div class="project-grid" id="projectGrid">
+        <article class="project-card featured" data-category="research" data-project="polyp">
+          <div class="project-art art-medical"><div class="art-tag mono">RESEARCH / COMPUTER VISION</div><div class="scan-frame"><div class="scan-ring"></div><div class="scan-cross">+</div><span>SEGMENTATION<br>PIPELINE</span></div><div class="art-foot mono">POLYPGEN2021 · MULTI-CENTER</div></div>
+          <div class="project-info"><div class="project-topline"><span class="project-type">ONGOING M.TECH RESEARCH</span><span class="project-arrow">↗</span></div><h3>Semi-Supervised Domain Adaptation for Polyp Segmentation</h3><p>Adapting a segmentation model across medical centers using teacher–student learning and temporally stable pseudo-labels.</p><div class="tag-row"><span>PyTorch</span><span>Deep Learning</span><span>Domain Adaptation</span></div><button class="text-link open-project" data-open="polyp">Explore research <span>→</span></button></div>
+        </article>
+        <article class="project-card" data-category="genai" data-project="rag">
+          <div class="project-art art-rag"><div class="art-tag mono">GENAI / RETRIEVAL</div><div class="rag-window"><div class="rag-bar"><i></i><i></i><i></i><span>career_assistant.py</span></div><div class="rag-lines"><b>QUERY</b><i></i><i class="short"></i><b>RETRIEVAL</b><i></i><i class="mid"></i><b>RESPONSE</b><i class="short"></i></div><div class="rag-chip">FAISS + LLM</div></div><div class="art-foot mono">RETRIEVE → AUGMENT → GENERATE</div></div>
+          <div class="project-info"><div class="project-topline"><span class="project-type">CAREER INTELLIGENCE</span><span class="project-arrow">↗</span></div><h3>Job Description RAG Assistant</h3><p>A career assistant for job-related Q&A, resume matching, skill-gap analysis, and tailored cover letters.</p><div class="tag-row"><span>LangChain</span><span>FAISS</span><span>Groq</span></div><button class="text-link open-project" data-open="rag">Explore project <span>→</span></button></div>
+        </article>
+        <article class="project-card" data-category="genai" data-project="trip">
+          <div class="project-art art-trip"><div class="art-tag mono">AGENTIC AI / APPLICATION</div><div class="trip-map"><svg viewBox="0 0 320 150" role="img" aria-label="Abstract route illustration"><path d="M18 115 C65 15 112 140 157 70 S245 15 300 95" fill="none" stroke="#81b8ff" stroke-width="2" stroke-dasharray="5 6"/><circle cx="18" cy="115" r="5" fill="#81b8ff"/><circle cx="157" cy="70" r="5" fill="#81b8ff"/><circle cx="300" cy="95" r="5" fill="#81b8ff"/><path d="M30 35l35-15 25 18-18 25-38-3zM205 100l30-22 30 12-7 30-42 5z" fill="none" stroke="#405675"/></svg><span class="map-pin pin-a">01</span><span class="map-pin pin-b">02</span><span class="map-pin pin-c">03</span></div><div class="art-foot mono">PLAN · REASON · PERSONALIZE</div></div>
+          <div class="project-info"><div class="project-topline"><span class="project-type">AGENTIC WORKFLOW</span><span class="project-arrow">↗</span></div><h3>AI Trip Planner</h3><p>An interactive travel planner orchestrating weather, attractions, and currency information through an agentic workflow.</p><div class="tag-row"><span>LangGraph</span><span>FastAPI</span><span>Streamlit</span></div><button class="text-link open-project" data-open="trip">Explore project <span>→</span></button></div>
+        </article>
+        <article class="project-card" data-category="mlops" data-project="sales">
+          <div class="project-art art-sales"><div class="art-tag mono">TIME SERIES / MLOPS</div><div class="chart-art"><div class="chart-label mono">FORECAST SIGNAL</div><svg viewBox="0 0 320 140" role="img" aria-label="Illustrative time series chart"><path d="M5 112 L35 94 L65 103 L95 57 L125 76 L155 38 L185 65 L215 28 L245 48 L275 18 L315 34" fill="none" stroke="#73d7b0" stroke-width="2.5"/><path d="M5 112 L35 94 L65 103 L95 57 L125 76 L155 38 L185 65 L215 28 L245 48 L275 18 L315 34 L315 130 L5 130Z" fill="url(#area)" opacity=".2"/><defs><linearGradient id="area" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#73d7b0"/><stop offset="1" stop-color="#73d7b0" stop-opacity="0"/></linearGradient></defs></svg><div class="chart-legend"><span>● HISTORICAL</span><span>● FORECAST</span></div></div><div class="art-foot mono">1,782 SERIES · 5 YEARS</div></div>
+          <div class="project-info"><div class="project-topline"><span class="project-type">FORECASTING / OPTIMIZATION</span><span class="project-arrow">↗</span></div><h3>Store Sales Time-Series Forecasting</h3><p>A Temporal Convolutional Network forecasting sales across product-store combinations, with experiment tracking and model compression.</p><div class="tag-row"><span>PyTorch</span><span>TCN</span><span>MLflow · DVC</span></div><button class="text-link open-project" data-open="sales">Explore project <span>→</span></button></div>
+        </article>
+      </div>
+      <div class="project-footnote mono">SELECT A PROJECT TO OPEN ITS ENGINEERING NOTES <span>↗</span></div>
+    </section>
+
+    <section class="section-wrap journey-section" id="journey">
+      <div class="section-heading"><div><span class="section-kicker">03 — THE PATH SO FAR</span><h2>Experience that shapes <span class="gradient-text">perspective.</span></h2></div><span class="section-index">JOURNEY / 03</span></div>
+      <div class="timeline">
+        <div class="timeline-item"><div class="timeline-date mono">2025 — PRESENT</div><div class="timeline-content"><span class="timeline-label">EDUCATION</span><h3>M.Tech. in Artificial Intelligence</h3><p>NIT Jalandhar · CGPA 8.22</p><small>Building foundations and research experience in AI, machine learning, and intelligent systems.</small></div></div>
+        <div class="timeline-item"><div class="timeline-date mono">FEB 2023 — JUL 2025</div><div class="timeline-content"><span class="timeline-label">PROFESSIONAL EXPERIENCE</span><h3>Associate Business Analyst · CGI</h3><p>Bengaluru, India</p><small>Worked in first-line application support for global users, investigating issues and troubleshooting incidents. Served as discipline lead for one of four functional disciplines.</small></div></div>
+        <div class="timeline-item"><div class="timeline-date mono">2020</div><div class="timeline-content"><span class="timeline-label">EDUCATION</span><h3>B.Tech. in Petroleum Engineering</h3><p>Pandit Deendayal Energy University · CGPA 8.87</p><small>An engineering foundation that introduced me to complex systems and industrial problem-solving.</small></div></div>
+        <div class="timeline-item"><div class="timeline-date mono">2018 — 2019</div><div class="timeline-content"><span class="timeline-label">INDUSTRY EXPOSURE</span><h3>ONGC · Technical Internships</h3><p>Ahmedabad · Navi Mumbai</p><small>Exposure to pressure transient analysis, OFM, flow assurance, nodal analysis, and production optimization.</small></div></div>
+      </div>
+      <div class="milestone-strip"><div><span class="milestone-value">506</span><span class="milestone-caption">GATE DA score · 2025</span></div><div><span class="milestone-value">8.22</span><span class="milestone-caption">M.Tech CGPA</span></div><div><span class="milestone-value">8.87</span><span class="milestone-caption">B.Tech CGPA</span></div><div><span class="milestone-value">61.6%</span><span class="milestone-caption">Forecast model size reduction</span></div></div>
+    </section>
+
+    <section class="section-wrap learning-section" id="learning">
+      <div class="section-heading"><div><span class="section-kicker">04 — LEARNING IN PRACTICE</span><h2>Learning by <span class="gradient-text">doing.</span></h2><p class="section-description">Hands-on learning belongs here too — separate from formal credentials.</p></div><span class="section-index">LEARNING / 04</span></div>
+      <div class="learning-card"><div class="learning-icon">⌘</div><div class="learning-copy"><span class="project-type">PRACTICAL LEARNING / HANDS-ON LABS</span><h3>TryHackMe & Practical Labs</h3><p>Dedicated space for documenting hands-on rooms, security exercises, technical labs, and independent practice. No lab completion is represented as a certification.</p><div class="learning-details"><div><small>ROOMS / LABS COMPLETED</small><strong>Not provided yet</strong></div><div><small>AREAS COVERED</small><strong>To be updated</strong></div></div><a class="text-link placeholder-link" href="#contact">Add profile link <span>↗</span></a></div><div class="learning-side mono">PRACTICE<br>→ EXPERIMENT<br>→ DOCUMENT</div></div>
+      <div class="empty-evidence"><span class="mono">WRITE-UPS & SELECTED LAB EVIDENCE</span><p>Individual write-ups and lab links can be added here when available.</p><span class="placeholder-pill">WRITE-UP PLACEHOLDER</span></div>
+    </section>
+
+    <section class="section-wrap credentials-section" id="credentials">
+      <div class="section-heading"><div><span class="section-kicker">05 — RECOGNITION & COMMUNITY</span><h2>Credentials, competitions <span class="gradient-text">& beyond.</span></h2></div><span class="section-index">MORE / 05</span></div>
+      <div class="credential-grid">
+        <article class="simple-card"><div class="simple-card-icon">✳</div><span class="project-type">CERTIFICATIONS</span><h3>Professional learning</h3><p>No certification details have been supplied yet. Add completed courses or certifications here with the reason for completing them and the topics covered.</p><span class="placeholder-pill">CERTIFICATE LINK PLACEHOLDER</span></article>
+        <article class="simple-card"><div class="simple-card-icon">⌁</div><span class="project-type">COMPETITIONS & CTFs</span><h3>Challenges and events</h3><p>Use this space for hackathons, CTFs, coding competitions, placements, challenge areas, and lessons learned.</p><span class="placeholder-pill">RESULT & EVIDENCE PLACEHOLDER</span></article>
+        <article class="simple-card"><div class="simple-card-icon">◎</div><span class="project-type">ACHIEVEMENTS & COMMUNITY</span><h3>Contributions that matter</h3><p>Add meaningful awards, volunteering, mentoring, talks, or community contributions, with a focus on the work and its impact.</p><span class="placeholder-pill">IMPACT / EVIDENCE PLACEHOLDER</span></article>
+      </div>
+    </section>
+
+    <section class="section-wrap contact-section" id="contact">
+      <div class="contact-panel"><div class="contact-orb"></div><span class="section-kicker">06 — OPEN TO CONVERSATIONS</span><h2>Have a problem<br>worth <span class="gradient-text">building for?</span></h2><p>I'm interested in AI/ML opportunities, research collaborations, and conversations around applied machine learning and intelligent systems.</p><div class="contact-actions"><a class="button button-primary" href="mailto:your.email@example.com">Get in touch <span>↗</span></a><a class="button button-ghost" href="https://github.com/your-username" target="_blank" rel="noreferrer">GitHub <span>↗</span></a><a class="button button-ghost" href="https://www.linkedin.com/in/your-linkedin/" target="_blank" rel="noreferrer">LinkedIn <span>↗</span></a></div><div class="contact-email mono">YOUR.EMAIL@EXAMPLE.COM</div></div>
+    </section>
+  </main>
+  <footer class="footer section-wrap"><a class="brand" href="#home"><span class="brand-mark">A<span>/</span>ML</span><span class="brand-caption">PROJECT JOURNAL</span></a><span class="mono footer-note">BUILT WITH CURIOSITY · HTML / CSS / JS</span><a class="back-top mono" href="#home">BACK TO TOP ↑</a><span class="copyright">© <span id="year"></span> Your Name</span></footer>
+
+  <div class="modal-backdrop" id="projectModal" aria-hidden="true">
+    <div class="project-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="modalClose" aria-label="Close project details">×</button>
+      <div class="modal-content" id="modalContent"></div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
