@@ -680,3 +680,108 @@ section:not(.hero)::before {
   .shooting-star, .planet-small, .moonlet, .hero-visual::after { animation: none !important; }
   .js-motion [data-reveal] { opacity: 1; transform: none; }
 }
+
+
+/* ==========================================================
+   REALISTIC PLANET PASS — matte mineral/gas textures,
+   atmospheric depth and physically softer illumination
+   ========================================================== */
+
+/* Large background world: muted Saturn/Jupiter-inspired gas giant.
+   Avoid glossy highlights, hard outlines and toy-like saturated color. */
+.planet-large {
+  isolation: isolate;
+  opacity: .46;
+  background:
+    radial-gradient(ellipse at 28% 22%, rgba(229,220,201,.24), transparent 12%),
+    radial-gradient(ellipse at 35% 31%, rgba(176,158,145,.28), transparent 28%),
+    radial-gradient(ellipse at 32% 38%, rgba(129,111,126,.48), transparent 48%),
+    radial-gradient(ellipse at 66% 58%, rgba(12,14,31,.96) 0%, rgba(18,20,42,.9) 33%, transparent 69%),
+    radial-gradient(circle at 38% 34%, #8d8290 0%, #665e79 27%, #403d60 53%, #171a38 78%, #090c20 100%);
+  box-shadow:
+    inset -38px -20px 54px rgba(0,0,0,.82),
+    inset 15px 7px 28px rgba(227,211,197,.08),
+    0 0 75px rgba(98,91,159,.10);
+  filter: saturate(.66) contrast(1.08);
+}
+.planet-large::before {
+  z-index: -1;
+  width: 158%;
+  height: 39%;
+  left: -29%;
+  top: 31%;
+  border: 0;
+  border-radius: 50%;
+  transform: rotate(-23deg);
+  background:
+    radial-gradient(ellipse at center,
+      transparent 0 48%,
+      rgba(177,164,153,.06) 49%,
+      rgba(191,178,166,.26) 50%,
+      rgba(100,96,122,.32) 53%,
+      rgba(35,37,66,.48) 57%,
+      transparent 64%);
+  box-shadow: none;
+  filter: blur(.7px);
+  opacity: .76;
+}
+.planet-large::after {
+  z-index: 1;
+  inset: 0;
+  border-radius: inherit;
+  background:
+    radial-gradient(ellipse at 32% 38%, rgba(218,202,184,.17), transparent 4%),
+    radial-gradient(ellipse at 44% 54%, rgba(45,38,61,.28), transparent 8%),
+    radial-gradient(ellipse at 58% 42%, rgba(192,172,159,.12), transparent 12%),
+    repeating-linear-gradient(
+      176deg,
+      transparent 0 9px,
+      rgba(220,205,190,.055) 10px 12px,
+      rgba(44,43,67,.12) 13px 16px,
+      transparent 18px 27px
+    ),
+    linear-gradient(105deg, rgba(244,223,201,.09), transparent 37%, rgba(3,6,22,.65) 83%);
+  opacity: .7;
+  mix-blend-mode: screen;
+  filter: blur(1.2px);
+  mask-image: radial-gradient(ellipse at 38% 42%, black 0 54%, transparent 77%);
+}
+
+/* Smaller body becomes a cratered, matte moon rather than a shiny bead. */
+.planet-small {
+  opacity: .42;
+  background:
+    radial-gradient(circle at 29% 24%, rgba(226,222,211,.25), transparent 8%),
+    radial-gradient(circle at 62% 63%, rgba(17,19,37,.7), transparent 14%),
+    radial-gradient(circle at 38% 42%, #aaa5a0 0%, #777985 34%, #45495e 65%, #171b34 100%);
+  box-shadow:
+    inset -13px -10px 19px rgba(0,0,0,.78),
+    inset 5px 4px 10px rgba(235,229,218,.10),
+    0 0 28px rgba(126,131,177,.12);
+  filter: grayscale(.25) saturate(.52);
+}
+.planet-small::before {
+  content: "";
+  position: absolute;
+  width: 16%; height: 16%;
+  left: 24%; top: 30%;
+  border-radius: 50%;
+  background: rgba(29,32,48,.27);
+  box-shadow:
+    15px 13px 0 -2px rgba(25,28,44,.23),
+    27px -7px 0 -4px rgba(218,214,204,.13),
+    -5px 23px 0 -3px rgba(25,28,44,.24);
+  filter: blur(1px);
+}
+.planet-small::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(110deg, rgba(232,229,218,.12), transparent 42%, rgba(3,6,20,.64) 85%);
+}
+
+/* Soft atmospheric edge light, never a bright neon outline. */
+.planet-large, .planet-small {
+  outline: 1px solid rgba(197,190,213,.035);
+}
