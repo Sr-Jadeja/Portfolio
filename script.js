@@ -183,3 +183,23 @@ document.getElementById("year").textContent = new Date().getFullYear();
   }, { threshold: 0.12, rootMargin: '0px 0px -45px 0px' });
   revealTargets.forEach(element => observer.observe(element));
 })();
+
+
+// Premium interaction polish: reading progress and elevated sticky header.
+(function initPageChrome() {
+  const header = document.querySelector('.site-header');
+  const progress = document.createElement('div');
+  progress.className = 'reading-progress';
+  progress.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(progress);
+
+  const update = () => {
+    const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+    const amount = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+    progress.style.width = `${Math.min(100, Math.max(0, amount))}%`;
+    if (header) header.classList.toggle('is-scrolled', window.scrollY > 12);
+  };
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+})();
