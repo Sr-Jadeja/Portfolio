@@ -1,576 +1,292 @@
-/* ============================================================
-   Portfolio — interactivity
-   ============================================================ */
-
-/* ---------- Project data -------------------------------------
-   Add, remove or edit projects here. Every card and modal is
-   generated from this array.
-   ------------------------------------------------------------ */
-const projects = [
-  {
-    tag: "Research",
-    status: "Ongoing",
-    statusClass: "wip",
+const projectData = {
+  polyp: {
+    kicker: "ONGOING M.TECH RESEARCH · COMPUTER VISION",
     title: "Semi-Supervised Domain Adaptation for Polyp Segmentation",
-    summary:
-      "A teacher–student EMA pipeline that adapts a segmentation model to unlabelled target-domain colonoscopy data using temporally-stable pseudo-labels.",
-    stack: ["PyTorch", "PolypGen2021", "EMA teacher–student", "Dynamic Cross-Entropy"],
-    detail: {
-      what:
-        "A semi-supervised domain adaptation pipeline for automated polyp segmentation, trained on the multi-center PolypGen2021 dataset. A teacher–student EMA framework adapts a source-domain model to unlabelled target-domain data.",
-      why:
-        "Segmentation models degrade badly when they move between hospitals — different scopes, lighting, bowel preparation. Expert annotation at every new site is slow and expensive, so the model has to make use of unlabelled target data instead.",
-      objective:
-        "Adapt a source-domain segmentation model to unlabelled target-domain data without fresh expert annotations, while keeping the pseudo-labels reliable enough to actually learn from.",
-      tools:
-        "PyTorch, teacher–student EMA framework, PolypGen2021 multi-center dataset, composite loss combining Dynamic Cross-Entropy for class imbalance.",
-      whatIDid: [
-        "Designed and implemented the full semi-supervised domain adaptation pipeline in PyTorch.",
-        "Built the teacher–student EMA framework that adapts to unlabelled target-domain data.",
-        "Designed a temporal stability weighting scheme that weights pseudo-labels by prediction consistency across training iterations.",
-        "Engineered a composite loss combining focal-style components with Dynamic Cross-Entropy to handle severe foreground/background class imbalance.",
-      ],
-      skills: [
-        "Domain adaptation",
-        "Semi-supervised learning",
-        "EMA teacher–student training",
-        "Medical image segmentation",
-        "Loss function design",
-        "PyTorch",
-      ],
-      outcome:
-        "Research in progress — the pipeline is implemented and training; evaluation is focused on cross-center generalisation on held-out PolypGen centers.",
-      relevance:
-        "This is the core problem for deployed medical imaging: a segmentation model that has to hold up at a new hospital without re-annotation. The same pattern applies to any cross-site vision deployment.",
-      evidence: [
-        { label: "GitHub repository", url: null, note: "Repository URL" },
-        { label: "Write-up", url: null, note: "Research write-up or paper URL" },
-        { label: "Screenshots", url: null, note: "Screenshot gallery URL" },
-        { label: "Technical documentation", url: null, note: "Technical documentation URL" },
-      ],
-    },
+    summary: "A semi-supervised segmentation pipeline designed to adapt a model trained on multi-center medical imagery to an unlabelled target domain, addressing the challenge of domain shift in medical image analysis.",
+    stats: [{value:"PolypGen2021",label:"MULTI-CENTER DATASET"},{value:"Teacher–Student",label:"EMA FRAMEWORK"},{value:"Ongoing",label:"RESEARCH STATUS"}],
+    sections: [
+      ["WHAT WAS THE PROJECT?", "An M.Tech research project exploring semi-supervised domain adaptation for automated polyp segmentation across medical centers. The pipeline uses labelled source-domain data and unlabelled target-domain data."],
+      ["WHY I WORKED ON IT", "Medical imaging data can vary across centers because of differences in devices, acquisition settings, and patient populations. A model that performs well in one domain may not generalize reliably to another. I wanted to investigate ways to improve adaptation without requiring extensive target-domain annotations."],
+      ["OBJECTIVE", "Develop a domain-adaptation approach that makes use of unlabelled target-domain images while maintaining stable and useful segmentation predictions."],
+      ["WHAT I IMPLEMENTED", "Built a teacher–student framework using exponential moving average (EMA). Designed temporal stability to weight pseudo-labels according to prediction consistency across training iterations. Engineered a composite loss incorporating Dynamic Cross-Entropy to address class imbalance."],
+      ["SKILLS DEVELOPED", "Medical image segmentation, semi-supervised learning, domain adaptation, teacher–student training, EMA, pseudo-labeling, loss-function design, experimental evaluation, and PyTorch development."],
+      ["OUTCOME & STATUS", "An implemented research pipeline using the PolypGen2021 multi-center dataset. The work is ongoing; final results, paper details, and publication status should be added when verified."],
+      ["REAL-WORLD RELEVANCE", "Domain adaptation can help medical AI systems cope with variation between clinical sites. More robust segmentation could support research into computer-assisted polyp detection and analysis; clinical use would require extensive validation."]
+    ],
+    tech:["Python","PyTorch","PolypGen2021","Semi-Supervised Learning","Domain Adaptation","EMA","Pseudo-Labeling"],
+    evidence:["GitHub repository","Research write-up","Training / evaluation screenshots","Technical documentation","Publication / paper"]
   },
-  {
-    tag: "LLM Application",
-    status: "Complete",
-    statusClass: "",
+  rag: {
+    kicker: "GENERATIVE AI · RETRIEVAL-AUGMENTED GENERATION",
     title: "Job Description RAG Assistant",
-    summary:
-      "A retrieval-augmented career assistant that answers job questions, matches resumes to descriptions, surfaces skill gaps and drafts tailored cover letters.",
-    stack: ["Python", "LangChain", "FAISS", "HuggingFace Embeddings", "Gradio"],
-    detail: {
-      what:
-        "A RAG-based career assistant that answers job-related questions, matches resumes with job descriptions, identifies skill gaps, and generates tailored cover letters.",
-      why:
-        "Generic LLM answers about a specific job description hallucinate. Grounding the generation in retrieved chunks of the actual JD fixes that — and makes the output auditable.",
-      objective:
-        "Build a retrieval pipeline accurate enough that generated answers stay grounded in the source job description rather than inventing requirements.",
-      tools:
-        "Python, LangChain, FAISS vector database, all-MiniLM-L6-v2 HuggingFace embeddings, GPT-OSS 120B via Groq, Gradio UI.",
-      whatIDid: [
-        "Built a pipeline to chunk and embed job descriptions using all-MiniLM-L6-v2.",
-        "Stored embeddings in a FAISS vector database for semantic retrieval at query time.",
-        "Wired retrieved chunks as context into GPT-OSS 120B via Groq, reducing hallucination.",
-        "Exposed the full pipeline through an interactive Gradio interface.",
-      ],
-      skills: [
-        "RAG architecture",
-        "Embedding models",
-        "Vector databases",
-        "Prompt construction",
-        "LLM integration",
-        "Gradio",
-      ],
-      outcome:
-        "Working end-to-end assistant that answers grounded questions about a job description, matches resumes to roles, and drafts tailored cover letters.",
-      relevance:
-        "The exact retrieval pattern used in production LLM assistants — grounding generation in a private corpus. Directly reusable for internal knowledge assistants, support bots and document Q&A.",
-      evidence: [
-        { label: "GitHub repository", url: null, note: "Repository URL" },
-        { label: "Demo", url: null, note: "Live demo URL" },
-        { label: "Write-up", url: null, note: "Write-up URL" },
-      ],
-    },
+    summary: "A retrieval-augmented career assistant that helps users understand job descriptions, compare a resume against role requirements, identify skill gaps, and generate tailored cover letters.",
+    stats: [{value:"FAISS",label:"VECTOR DATABASE"},{value:"all-MiniLM-L6-v2",label:"EMBEDDING MODEL"},{value:"GPT-OSS 120B",label:"LLM VIA GROQ"}],
+    sections: [
+      ["WHAT WAS THE PROJECT?", "A RAG-based application that answers questions grounded in job-description content and supports practical career tasks such as resume–JD matching, skill-gap identification, and cover-letter drafting."],
+      ["WHY I BUILT IT", "Job descriptions often contain dense, role-specific requirements. I wanted to build a tool that could retrieve relevant information from a JD and use it as context, rather than relying only on a model's general knowledge."],
+      ["OBJECTIVE", "Create a workflow that can ingest job descriptions, retrieve semantically relevant passages for a user query, and generate context-aware responses for career-related tasks."],
+      ["WHAT I IMPLEMENTED", "Built a pipeline to chunk job descriptions and create embeddings using all-MiniLM-L6-v2. Stored the vectors in FAISS and retrieved relevant chunks at query time. Passed retrieved context to GPT-OSS 120B through Groq to generate answers with a focus on reducing unsupported responses. Developed the application interface with Gradio."],
+      ["SKILLS DEVELOPED", "RAG architecture, document chunking, embeddings, vector search, retrieval pipelines, prompt design, LLM integration, application prototyping, and grounding responses in retrieved context."],
+      ["OUTCOME", "An end-to-end career assistant concept covering JD question answering, resume matching, skill-gap analysis, and tailored cover-letter generation. Add measured evaluation results if you have them."],
+      ["REAL-WORLD RELEVANCE", "The workflow demonstrates how retrieval-grounded LLM applications can make unstructured hiring information easier to explore and help candidates understand role requirements. Outputs should be reviewed by the user, not treated as automated hiring decisions."]
+    ],
+    tech:["Python","LangChain","FAISS","Hugging Face Embeddings","all-MiniLM-L6-v2","Groq","GPT-OSS 120B","Gradio"],
+    evidence:["GitHub repository","Live demo","Application screenshots","Architecture / RAG write-up","Technical documentation"]
   },
-  {
-    tag: "Agentic Workflow",
-    status: "Complete",
-    statusClass: "",
+  trip: {
+    kicker: "AGENTIC AI · FULL-STACK APPLICATION",
     title: "AI Trip Planner",
-    summary:
-      "An agentic trip planner that pulls live weather, attractions and currency data through a LangGraph workflow and renders personalised plans in a Streamlit UI.",
-    stack: ["Streamlit", "FastAPI", "LangGraph", "Agentic Workflow"],
-    detail: {
-      what:
-        "An AI-powered trip planning system that generates personalised trip plans by orchestrating real-time tools through an agentic workflow.",
-      why:
-        "LLM-only trip planning invents restaurants and ignores weather. An agentic workflow that calls real tools fixes both — the plan responds to live data instead of fabricating it.",
-      objective:
-        "Build a planner where tool calls (weather, attractions, FX) are orchestrated by an agentic graph rather than free-form generation.",
-      tools: "Streamlit frontend, FastAPI backend, LangGraph agentic workflow.",
-      whatIDid: [
-        "Built the Streamlit frontend integrated with a FastAPI backend.",
-        "Implemented an agentic workflow using LangGraph to fetch and analyse real-time weather, attractions and currency exchange data.",
-        "Wired tool results back into the plan so recommendations respond to live conditions.",
-        "Presented results interactively in the web UI.",
-      ],
-      skills: [
-        "Agentic orchestration (LangGraph)",
-        "FastAPI backend design",
-        "Streamlit UI",
-        "Tool calling",
-        "Multi-service integration",
-      ],
-      outcome:
-        "Working planner that produces personalised plans driven by real data instead of invented facts.",
-      relevance:
-        "Agentic orchestration is how modern LLM apps move beyond chat — calling tools, APIs and data services. Directly applicable to any workflow automation product.",
-      evidence: [
-        { label: "GitHub repository", url: null, note: "Repository URL" },
-        { label: "Demo", url: null, note: "Live demo URL" },
-        { label: "Write-up", url: null, note: "Write-up URL" },
-      ],
-    },
+    summary: "An interactive trip-planning application that uses an agentic workflow to gather and reason over travel context such as weather, attractions, and currency exchange information.",
+    stats: [{value:"LangGraph",label:"AGENT WORKFLOW"},{value:"FastAPI",label:"BACKEND API"},{value:"Streamlit",label:"USER INTERFACE"}],
+    sections: [
+      ["WHAT WAS THE PROJECT?", "An AI-powered trip planner with a Streamlit frontend and FastAPI backend. The backend executes a LangGraph workflow that uses external information sources to help assemble a personalized travel plan."],
+      ["WHY I BUILT IT", "Travel planning involves multiple kinds of information that need to be considered together. I wanted to explore how an agentic workflow could coordinate different steps and data sources instead of relying on a single prompt."],
+      ["OBJECTIVE", "Build an interactive system that fetches and analyzes relevant travel information, then presents a useful trip plan through a web interface."],
+      ["WHAT I IMPLEMENTED", "Created a Streamlit frontend integrated with a FastAPI backend. Designed a LangGraph-based agentic workflow to fetch and analyze real-time weather, attractions, and currency exchange data. Connected the workflow output to the interactive UI."],
+      ["SKILLS DEVELOPED", "Agentic workflow design, LangGraph, API integration, backend development, frontend-to-backend communication, orchestration, and building interactive AI applications."],
+      ["OUTCOME", "An end-to-end trip-planning application combining a UI, API backend, and multi-step agent workflow. Add screenshots and a working demo when available."],
+      ["REAL-WORLD RELEVANCE", "The project illustrates how AI workflows can coordinate changing information from multiple sources to support planning tasks. Live data should be checked for freshness and accuracy before travel decisions."]
+    ],
+    tech:["Python","Streamlit","FastAPI","LangGraph","Agentic Workflow","Weather Data","Attractions Data","Currency Exchange"],
+    evidence:["GitHub repository","Live demo","UI screenshots","Workflow diagram","Technical documentation"]
   },
-  {
-    tag: "Time Series & MLOps",
-    status: "Complete",
-    statusClass: "",
+  sales: {
+    kicker: "TIME-SERIES FORECASTING · MLOPS",
     title: "Store Sales Time-Series Forecasting",
-    summary:
-      "A Temporal Convolutional Network forecasting 1,782 product-store combinations, with MLflow tracking, DVC versioning and post-training quantization that shrank the model by 61.6%.",
-    stack: ["PyTorch", "MLflow", "DVC", "TCN"],
-    detail: {
-      what:
-        "A Temporal Convolutional Network (TCN) to forecast sales for 1,782 product-store combinations using 5 years of historical data.",
-      why:
-        "Store-level sales forecasting is a classic high-value ML problem — and a good excuse to build the MLOps stack that keeps experiments reproducible and the model deployable.",
-      objective:
-        "Build an accurate multi-series forecaster, then put it on a reproducible experiment-tracking, data-versioning and model-compression pipeline.",
-      tools: "PyTorch, TCN architecture, MLflow, DVC, post-training quantization.",
-      whatIDid: [
-        "Developed a TCN to forecast sales across 1,782 product-store combinations from 5 years of historical data.",
-        "Implemented experiment tracking with MLflow to optimise model convergence and stability.",
-        "Used DVC to efficiently track and manage large-scale CSV datasets and model artifacts.",
-        "Applied post-training quantization, reducing model size by 61.6% (8.88 MB → 3.41 MB).",
-      ],
-      skills: [
-        "Time-series modelling (TCN)",
-        "Experiment tracking",
-        "Data versioning",
-        "Model compression",
-        "PyTorch",
-      ],
-      outcome:
-        "Working forecaster with reproducible training runs and a model small enough to deploy comfortably on constrained infrastructure.",
-      relevance:
-        "Forecasting discipline and MLOps are what separate a notebook from a deployed system. Directly applicable to retail, inventory and demand planning.",
-      evidence: [
-        { label: "GitHub repository", url: null, note: "Repository URL" },
-        { label: "Write-up", url: null, note: "Write-up URL" },
-        { label: "Demo", url: null, note: "Demo URL" },
-        { label: "Technical documentation", url: null, note: "Technical documentation URL" },
-      ],
-    },
-  },
-];
+    summary: "A Temporal Convolutional Network forecasting sales across 1,782 product-store combinations using five years of historical data, supported by experiment tracking, dataset versioning, and post-training quantization.",
+    stats: [{value:"1,782",label:"PRODUCT-STORE SERIES"},{value:"5 YEARS",label:"HISTORICAL DATA"},{value:"61.6%",label:"MODEL SIZE REDUCTION"}],
+    sections: [
+      ["WHAT WAS THE PROJECT?", "A multi-series retail sales forecasting project using a Temporal Convolutional Network (TCN) to learn patterns across product families and stores."],
+      ["WHY I BUILT IT", "Retail demand varies by product and store over time. I wanted to explore a deep-learning approach for multi-series forecasting while also practicing reproducible experiment management and model optimization."],
+      ["OBJECTIVE", "Train a TCN to forecast sales for 33 product families across 54 stores, and build a workflow for experiment tracking, data/model versioning, and reducing model footprint."],
+      ["WHAT I IMPLEMENTED", "Prepared five years of historical data for 1,782 product-store combinations. Used a 120-timestep lookback window and a 16-day forecasting horizon. Implemented the TCN in PyTorch, tracked experiments with MLflow, managed datasets and model artifacts with DVC, and applied post-training quantization."],
+      ["SKILLS DEVELOPED", "Time-series forecasting, temporal convolutional networks, sequence-window preparation, PyTorch, experiment tracking, data and model versioning, quantization, and model optimization."],
+      ["OUTCOME", "Post-training quantization reduced model size from 8.88 MB to 3.41 MB — a 61.6% reduction. The project covered 1,782 product-store series. Forecast accuracy metrics can be added when you choose which evaluation results to publish."],
+      ["REAL-WORLD RELEVANCE", "Retail forecasting can inform inventory planning, replenishment, and demand management. Smaller model artifacts can also make deployment and distribution more practical, depending on runtime constraints."]
+    ],
+    tech:["Python","PyTorch","TCN","MLflow","DVC","Time-Series Forecasting","Post-Training Quantization"],
+    evidence:["GitHub repository","Forecast visualizations","Experiment tracking screenshots","Model-size comparison","Technical write-up"]
+  }
+};
 
-/* ---------- Helpers ------------------------------------------ */
-const $  = (sel, root = document) => root.querySelector(sel);
-const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
-const prefersReducedMotion =
-  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-function escapeHtml(str) {
-  return String(str).replace(/[&<>"']/g, (c) => ({
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&#39;",
-  }[c]));
-}
-
-/* ---------- Render project cards ----------------------------- */
-function renderProjects() {
-  const grid = $("#projectGrid");
-  if (!grid) return;
-
-  grid.innerHTML = projects
-    .map(
-      (p, i) => `
-    <article
-      class="card project-card reveal"
-      data-project="${i}"
-      style="--d:${i * 80}ms"
-      tabindex="0"
-      role="button"
-      aria-label="Open details for ${escapeHtml(p.title)}"
-    >
-      <div class="project-top">
-        <span class="project-tag">${escapeHtml(p.tag)}</span>
-        <span class="project-status ${escapeHtml(p.statusClass || "")}">${escapeHtml(p.status)}</span>
-      </div>
-      <h3>${escapeHtml(p.title)}</h3>
-      <p class="project-summary">${escapeHtml(p.summary)}</p>
-      <div class="chips">
-        ${p.stack.map((t) => `<span class="chip">${escapeHtml(t)}</span>`).join("")}
-      </div>
-      <div class="project-foot">
-        <span class="project-open">View details</span>
-        <span class="project-arrow" aria-hidden="true">→</span>
-      </div>
-    </article>`
-    )
-    .join("");
-}
-
-/* ---------- Modal -------------------------------------------- */
-const modal = $("#modal");
-const modalBody = $("#modalBody");
+const modal = document.getElementById("projectModal");
+const modalContent = document.getElementById("modalContent");
+const modalClose = document.getElementById("modalClose");
 let lastFocused = null;
 
-function renderProjectDetail(p) {
-  const d = p.detail;
-  return `
-    <div class="modal-head">
-      <span class="kicker">Project · ${escapeHtml(p.tag)}</span>
-      <h2 id="modalTitle">${escapeHtml(p.title)}</h2>
-      <div class="chips">
-        ${p.stack.map((t) => `<span class="chip">${escapeHtml(t)}</span>`).join("")}
-      </div>
-    </div>
-
-    <div class="modal-section">
-      <h3>What was the project?</h3>
-      <p>${escapeHtml(d.what)}</p>
-    </div>
-    <div class="modal-section">
-      <h3>Why did I build it?</h3>
-      <p>${escapeHtml(d.why)}</p>
-    </div>
-    <div class="modal-section">
-      <h3>Objective</h3>
-      <p>${escapeHtml(d.objective)}</p>
-    </div>
-    <div class="modal-section">
-      <h3>Tools &amp; technologies</h3>
-      <p>${escapeHtml(d.tools)}</p>
-    </div>
-    <div class="modal-section">
-      <h3>What I actually did</h3>
-      <ul class="m-list">${d.whatIDid.map((x) => `<li>${escapeHtml(x)}</li>`).join("")}</ul>
-    </div>
-    <div class="modal-section">
-      <h3>Skills developed</h3>
-      <div class="chips">${d.skills.map((s) => `<span class="chip">${escapeHtml(s)}</span>`).join("")}</div>
-    </div>
-    <div class="modal-section">
-      <h3>Outcome</h3>
-      <p>${escapeHtml(d.outcome)}</p>
-    </div>
-    <div class="modal-section">
-      <h3>Real-world relevance</h3>
-      <p>${escapeHtml(d.relevance)}</p>
-    </div>
-    <div class="modal-section">
-      <h3>Evidence</h3>
-      <div class="ev-row">
-        ${d.evidence
-          .map((ev) =>
-            ev.url
-              ? `<a class="ev-btn" href="${escapeHtml(ev.url)}" target="_blank" rel="noopener">${escapeHtml(ev.label)}</a>`
-              : `<a class="ev-btn is-placeholder" href="#" data-evidence="${escapeHtml(ev.note || ev.label)}">${escapeHtml(ev.label)}<span class="ev-tag">placeholder</span></a>`
-          )
-          .join("")}
-      </div>
-    </div>
-  `;
-}
-
-function openModal(index) {
-  const p = projects[index];
-  if (!p) return;
+function openProject(key) {
+  const project = projectData[key];
+  if (!project) return;
   lastFocused = document.activeElement;
-  modalBody.innerHTML = renderProjectDetail(p);
+  const sections = project.sections.map(([heading, body]) =>
+    `<section class="detail-block"><h3>${heading}</h3><p>${body}</p></section>`
+  ).join("");
+  const stats = project.stats.map(item =>
+    `<div class="modal-stat"><strong>${item.value}</strong><span>${item.label}</span></div>`
+  ).join("");
+  const tech = project.tech.map(item => `<span>${item}</span>`).join("");
+  const evidence = project.evidence.map(item =>
+    `<span class="evidence-link placeholder">${item} · ADD LINK</span>`
+  ).join("");
+  modalContent.innerHTML = `
+    <div class="modal-kicker">${project.kicker}</div>
+    <h2 id="modalTitle">${project.title}</h2>
+    <p class="modal-summary">${project.summary}</p>
+    <div class="modal-stat-row">${stats}</div>
+    <div class="detail-grid">${sections}</div>
+    <div class="modal-tech">${tech}</div>
+    <div class="evidence-area"><h3>PROJECT EVIDENCE / ADD YOUR LINKS</h3>
+      <div class="evidence-links">${evidence}</div>
+      <p class="detail-block"><small>These are intentionally non-clickable placeholders. Replace them with real repository, demo, screenshot, write-up, or documentation links.</small></p>
+    </div>`;
   modal.classList.add("open");
   modal.setAttribute("aria-hidden", "false");
   document.body.style.overflow = "hidden";
-  const closeBtn = modal.querySelector(".modal-close");
-  if (closeBtn) closeBtn.focus();
+  modalClose.focus();
 }
-
-function closeModal() {
+function closeProject() {
   modal.classList.remove("open");
   modal.setAttribute("aria-hidden", "true");
   document.body.style.overflow = "";
-  if (lastFocused && typeof lastFocused.focus === "function") lastFocused.focus();
+  if (lastFocused) lastFocused.focus();
 }
+document.querySelectorAll("[data-open]").forEach(button => button.addEventListener("click", () => openProject(button.dataset.open)));
+document.querySelectorAll(".project-card").forEach(card => {
+  card.addEventListener("click", event => {
+    if (event.target.closest("a")) return;
+    openProject(card.dataset.project);
+  });
+  card.setAttribute("tabindex", "0");
+  card.setAttribute("role", "button");
+  card.setAttribute("aria-label", `Open ${card.querySelector("h3").textContent} details`);
+  card.addEventListener("keydown", event => {
+    if (event.key === "Enter" || event.key === " ") { event.preventDefault(); openProject(card.dataset.project); }
+  });
+});
+modalClose.addEventListener("click", closeProject);
+modal.addEventListener("click", event => { if (event.target === modal) closeProject(); });
+document.addEventListener("keydown", event => { if (event.key === "Escape" && modal.classList.contains("open")) closeProject(); });
 
-/* ---------- Toast -------------------------------------------- */
-let toastTimer;
-function showToast(msg) {
-  const toast = $("#toast");
-  if (!toast) return;
-  toast.textContent = msg;
-  toast.classList.add("show");
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => toast.classList.remove("show"), 2600);
-}
+document.querySelectorAll(".filter-btn").forEach(button => {
+  button.addEventListener("click", () => {
+    document.querySelectorAll(".filter-btn").forEach(item => item.classList.remove("active"));
+    button.classList.add("active");
+    const filter = button.dataset.filter;
+    document.querySelectorAll(".project-card").forEach(card => {
+      card.hidden = filter !== "all" && card.dataset.category !== filter;
+    });
+  });
+});
 
-/* ---------- Global click / keyboard -------------------------- */
-function initGlobalHandlers() {
-  document.addEventListener("click", (e) => {
-    // Placeholder links first — they should never navigate
-    const ph = e.target.closest(".is-placeholder");
-    if (ph) {
-      e.preventDefault();
-      const label = ph.dataset.evidence || ph.textContent.trim();
-      showToast(`Placeholder — replace with: ${label}`);
-      return;
-    }
-    // Project card
-    const card = e.target.closest(".project-card");
-    if (card) {
-      openModal(Number(card.dataset.project));
-      return;
-    }
-    // Modal close (backdrop or button)
-    if (e.target.closest("[data-close]")) {
-      closeModal();
+const menuToggle = document.getElementById("menuToggle");
+const nav = document.getElementById("nav");
+menuToggle.addEventListener("click", () => {
+  const expanded = menuToggle.getAttribute("aria-expanded") === "true";
+  menuToggle.setAttribute("aria-expanded", String(!expanded));
+  nav.classList.toggle("open", !expanded);
+});
+nav.querySelectorAll("a").forEach(link => link.addEventListener("click", () => {
+  nav.classList.remove("open");
+  menuToggle.setAttribute("aria-expanded", "false");
+}));
+document.getElementById("year").textContent = new Date().getFullYear();
+
+// Update the identity and social/contact URLs in index.html before publishing.
+
+// Progressive, accessible scroll reveals. Content remains visible if JS or
+// IntersectionObserver is unavailable, and reduced-motion preferences win.
+(function initScrollMotion() {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion || !('IntersectionObserver' in window)) return;
+
+  const selectors = [
+    '.hero-copy', '.hero-visual', '.section-heading', '.about-main', '.about-aside',
+    '.project-toolbar', '.project-card', '.timeline-item', '.milestone-strip > div',
+    '.learning-card', '.empty-evidence', '.simple-card', '.contact-panel'
+  ];
+  const revealTargets = selectors.flatMap(selector => Array.from(document.querySelectorAll(selector)));
+
+  revealTargets.forEach((element, index) => {
+    element.dataset.reveal = (element.classList.contains('hero-visual') || element.classList.contains('about-aside')) ? 'right' : 'up';
+    if (element.classList.contains('project-card') || element.classList.contains('simple-card')) {
+      element.style.setProperty('--reveal-delay', `${(index % 3) * 85}ms`);
     }
   });
 
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && modal.classList.contains("open")) {
-      closeModal();
-      return;
-    }
-    const card = e.target.closest(".project-card");
-    if (card && (e.key === "Enter" || e.key === " ")) {
-      e.preventDefault();
-      openModal(Number(card.dataset.project));
-    }
-  });
-}
+  document.documentElement.classList.add('js-motion');
+  const observer = new IntersectionObserver((entries, activeObserver) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-visible');
+      activeObserver.unobserve(entry.target);
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -45px 0px' });
+  revealTargets.forEach(element => observer.observe(element));
+})();
 
-/* ---------- Header / scroll progress ------------------------- */
-function initHeader() {
-  const header = $("#header");
-  const progress = $("#progress");
-  function onScroll() {
-    const y = window.scrollY;
-    if (header) header.classList.toggle("scrolled", y > 12);
-    if (progress) {
-      const h = document.documentElement.scrollHeight - window.innerHeight;
-      progress.style.width = (h > 0 ? (y / h) * 100 : 0) + "%";
-    }
-  }
-  window.addEventListener("scroll", onScroll, { passive: true });
-  onScroll();
-}
 
-/* ---------- Mobile nav --------------------------------------- */
-function initNav() {
-  const toggle = $("#navToggle");
-  const nav = $("#nav");
-  if (!toggle || !nav) return;
+// Premium interaction polish: reading progress and elevated sticky header.
+(function initPageChrome() {
+  const header = document.querySelector('.site-header');
+  const progress = document.createElement('div');
+  progress.className = 'reading-progress';
+  progress.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(progress);
 
-  toggle.addEventListener("click", () => {
-    const open = nav.classList.toggle("open");
-    toggle.setAttribute("aria-expanded", open ? "true" : "false");
-  });
+  const update = () => {
+    const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+    const amount = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+    progress.style.width = `${Math.min(100, Math.max(0, amount))}%`;
+    if (header) header.classList.toggle('is-scrolled', window.scrollY > 12);
+  };
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+})();
 
-  nav.addEventListener("click", (e) => {
-    if (e.target.tagName === "A") {
-      nav.classList.remove("open");
-      toggle.setAttribute("aria-expanded", "false");
-    }
-  });
-}
 
-/* ---------- Reveal on scroll --------------------------------- */
-function initReveal() {
-  const els = $$(".reveal");
-  if (!("IntersectionObserver" in window)) {
-    els.forEach((el) => el.classList.add("visible"));
-    return;
-  }
-  const io = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-          io.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
-  );
-  els.forEach((el) => io.observe(el));
+/* Cosmic scene: lightweight canvas stars + pointer and scroll parallax. */
+(function initCosmicScene() {
+  const canvas = document.getElementById("starfield");
+  const scene = document.querySelector(".cosmos-backdrop");
+  if (!canvas || !scene) return;
 
-  // Safety net: if anything is still hidden after 3s, reveal it.
-  setTimeout(() => {
-    $$(".reveal:not(.visible)").forEach((el) => el.classList.add("visible"));
-  }, 3000);
-}
-
-/* ---------- Starfield canvas -------------------------------- */
-function initStarfield() {
-  const canvas = $("#starfield");
-  if (!canvas) return;
-  const ctx = canvas.getContext("2d");
-  let w, h, dpr;
-  let stars = [];
-  let mouseX = 0, mouseY = 0;
-  let targetX = 0, targetY = 0;
-
-  function buildStars() {
-    const count = Math.min(500, Math.round((w * h) / 9000));
-    stars = [];
-    for (let i = 0; i < count; i++) {
-      const depth = Math.random();
-      const isCyan = Math.random() < 0.18;
-      const isViolet = !isCyan && Math.random() < 0.18;
-      stars.push({
-        x: Math.random() * w,
-        y: Math.random() * h,
-        r: 0.4 + depth * 1.4,
-        baseAlpha: 0.3 + depth * 0.6,
-        twinkle: Math.random() * Math.PI * 2,
-        twinkleSpeed: 0.0008 + Math.random() * 0.0015,
-        depth,
-        hue: isCyan ? 190 : isViolet ? 275 : 215,
-      });
-    }
-  }
+  const ctx = canvas.getContext("2d", { alpha: true });
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const pointerFine = window.matchMedia("(pointer: fine)").matches;
+  let width = 0, height = 0, stars = [], frame = 0;
+  let mouseX = 0, mouseY = 0, targetX = 0, targetY = 0;
+  let scrollY = window.scrollY || 0;
+  let lastTime = 0;
 
   function resize() {
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
-    w = window.innerWidth;
-    h = window.innerHeight;
-    canvas.width = w * dpr;
-    canvas.height = h * dpr;
-    canvas.style.width = w + "px";
-    canvas.style.height = h + "px";
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.6);
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = Math.round(width * dpr);
+    canvas.height = Math.round(height * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    buildStars();
+    const count = Math.min(190, Math.max(75, Math.floor(width * height / 8500)));
+    stars = Array.from({ length: count }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      r: Math.random() * 1.25 + .25,
+      alpha: Math.random() * .55 + .18,
+      phase: Math.random() * Math.PI * 2,
+      speed: Math.random() * .65 + .2,
+      depth: Math.random() * .8 + .2
+    }));
   }
 
-  let last = performance.now();
-  function frame(now) {
-    const dt = Math.min(now - last, 60);
-    last = now;
-
-    mouseX += (targetX - mouseX) * 0.05;
-    mouseY += (targetY - mouseY) * 0.05;
-
-    ctx.clearRect(0, 0, w, h);
-    for (const s of stars) {
-      s.twinkle += s.twinkleSpeed * dt;
-      const alpha = s.baseAlpha * (0.65 + 0.35 * Math.sin(s.twinkle));
-      const px = s.x + mouseX * s.depth * 14;
-      const py = s.y + mouseY * s.depth * 14;
-      const wx = ((px % w) + w) % w;
-      const wy = ((py % h) + h) % h;
+  function draw(time) {
+    if (!ctx) return;
+    const dt = Math.min((time - (lastTime || time)) / 1000, .05);
+    lastTime = time;
+    ctx.clearRect(0, 0, width, height);
+    const px = mouseX * .012, py = mouseY * .012;
+    for (const star of stars) {
+      const twinkle = reduced ? 1 : .72 + Math.sin(time * .001 * star.speed + star.phase) * .28;
+      const x = star.x + px * star.depth;
+      const y = star.y + py * star.depth;
       ctx.beginPath();
-      ctx.fillStyle = `hsla(${s.hue}, 90%, ${75 + s.depth * 15}%, ${alpha})`;
-      ctx.arc(wx, wy, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(220, 224, 255, ${star.alpha * twinkle})`;
+      ctx.arc(x, y, star.r, 0, Math.PI * 2);
       ctx.fill();
+      if (star.r > 1.12) {
+        ctx.strokeStyle = `rgba(171, 187, 255, ${.13 * twinkle})`;
+        ctx.lineWidth = .55;
+        ctx.beginPath();
+        ctx.moveTo(x - 3.2, y); ctx.lineTo(x + 3.2, y);
+        ctx.moveTo(x, y - 3.2); ctx.lineTo(x, y + 3.2);
+        ctx.stroke();
+      }
     }
-    requestAnimationFrame(frame);
+
+    if (!reduced) {
+      mouseX += (targetX - mouseX) * .045;
+      mouseY += (targetY - mouseY) * .045;
+      scene.style.setProperty("--mx", `${mouseX.toFixed(1)}px`);
+      scene.style.setProperty("--my", `${mouseY.toFixed(1)}px`);
+      scene.style.setProperty("--scroll-y", `${scrollY.toFixed(1)}px`);
+      frame = requestAnimationFrame(draw);
+    }
   }
 
-  function drawStatic() {
-    ctx.clearRect(0, 0, w, h);
-    for (const s of stars) {
-      ctx.beginPath();
-      ctx.fillStyle = `hsla(${s.hue}, 90%, 80%, ${s.baseAlpha})`;
-      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-      ctx.fill();
-    }
+  function onPointer(event) {
+    targetX = (event.clientX / Math.max(width, 1) - .5) * 46;
+    targetY = (event.clientY / Math.max(height, 1) - .5) * 34;
   }
-
-  window.addEventListener("resize", resize);
-  window.addEventListener("mousemove", (e) => {
-    targetX = (e.clientX / w - 0.5) * 2;
-    targetY = (e.clientY / h - 0.5) * 2;
-  });
+  function onScroll() { scrollY = window.scrollY || 0; }
 
   resize();
-  if (prefersReducedMotion) drawStatic();
-  else requestAnimationFrame(frame);
-}
+  if (pointerFine && !reduced) window.addEventListener("pointermove", onPointer, { passive: true });
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", resize);
+  if (reduced) draw(0);
+  else frame = requestAnimationFrame(draw);
 
-/* ---------- Parallax for orbs & nebulas ---------------------- */
-function initParallax() {
-  if (prefersReducedMotion) return;
-  const orbs = $$(".orb");
-  const nebulas = $$(".nebula");
-  if (!orbs.length && !nebulas.length) return;
-
-  let mx = 0, my = 0, tx = 0, ty = 0;
-  let sy = window.scrollY;
-
-  window.addEventListener("mousemove", (e) => {
-    tx = e.clientX / window.innerWidth - 0.5;
-    ty = e.clientY / window.innerHeight - 0.5;
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) cancelAnimationFrame(frame);
+    else if (!reduced) { lastTime = 0; frame = requestAnimationFrame(draw); }
   });
-  window.addEventListener("scroll", () => { sy = window.scrollY; }, { passive: true });
-
-  function loop() {
-    mx += (tx - mx) * 0.06;
-    my += (ty - my) * 0.06;
-
-    orbs.forEach((orb) => {
-      const depth = parseFloat(orb.dataset.depth) || 0.2;
-      const x = mx * depth * 60;
-      const y = my * depth * 60 - sy * depth * 0.06;
-      orb.style.transform = `translate3d(${x}px, ${y}px, 0)`;
-    });
-
-    nebulas.forEach((neb, i) => {
-      const depth = 0.10 + i * 0.05;
-      const x = mx * depth * 80;
-      const y = my * depth * 80 - sy * depth * 0.10;
-      neb.style.translate = `${x}px ${y}px`;
-    });
-
-    requestAnimationFrame(loop);
-  }
-  loop();
-}
-
-/* ---------- Project card cursor glow ------------------------- */
-function initCardGlow() {
-  $$(".project-card").forEach((card) => {
-    card.addEventListener("mousemove", (e) => {
-      const r = card.getBoundingClientRect();
-      card.style.setProperty("--mx", `${e.clientX - r.left}px`);
-      card.style.setProperty("--my", `${e.clientY - r.top}px`);
-    });
-  });
-}
-
-/* ---------- Init --------------------------------------------- */
-function init() {
-  document.documentElement.classList.add("js-enabled");
-
-  renderProjects();
-  initReveal();
-  initStarfield();
-  initParallax();
-  initCardGlow();
-  initHeader();
-  initNav();
-  initGlobalHandlers();
-
-  const yearEl = $("#year");
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
-}
-
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", init);
-} else {
-  init();
-}
+})();
