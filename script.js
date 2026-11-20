@@ -203,3 +203,90 @@ document.getElementById("year").textContent = new Date().getFullYear();
   window.addEventListener('resize', update);
   update();
 })();
+
+
+/* Cosmic scene: lightweight canvas stars + pointer and scroll parallax. */
+(function initCosmicScene() {
+  const canvas = document.getElementById("starfield");
+  const scene = document.querySelector(".cosmos-backdrop");
+  if (!canvas || !scene) return;
+
+  const ctx = canvas.getContext("2d", { alpha: true });
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const pointerFine = window.matchMedia("(pointer: fine)").matches;
+  let width = 0, height = 0, stars = [], frame = 0;
+  let mouseX = 0, mouseY = 0, targetX = 0, targetY = 0;
+  let scrollY = window.scrollY || 0;
+  let lastTime = 0;
+
+  function resize() {
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.6);
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = Math.round(width * dpr);
+    canvas.height = Math.round(height * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const count = Math.min(190, Math.max(75, Math.floor(width * height / 8500)));
+    stars = Array.from({ length: count }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      r: Math.random() * 1.25 + .25,
+      alpha: Math.random() * .55 + .18,
+      phase: Math.random() * Math.PI * 2,
+      speed: Math.random() * .65 + .2,
+      depth: Math.random() * .8 + .2
+    }));
+  }
+
+  function draw(time) {
+    if (!ctx) return;
+    const dt = Math.min((time - (lastTime || time)) / 1000, .05);
+    lastTime = time;
+    ctx.clearRect(0, 0, width, height);
+    const px = mouseX * .012, py = mouseY * .012;
+    for (const star of stars) {
+      const twinkle = reduced ? 1 : .72 + Math.sin(time * .001 * star.speed + star.phase) * .28;
+      const x = star.x + px * star.depth;
+      const y = star.y + py * star.depth;
+      ctx.beginPath();
+      ctx.fillStyle = `rgba(220, 224, 255, ${star.alpha * twinkle})`;
+      ctx.arc(x, y, star.r, 0, Math.PI * 2);
+      ctx.fill();
+      if (star.r > 1.12) {
+        ctx.strokeStyle = `rgba(171, 187, 255, ${.13 * twinkle})`;
+        ctx.lineWidth = .55;
+        ctx.beginPath();
+        ctx.moveTo(x - 3.2, y); ctx.lineTo(x + 3.2, y);
+        ctx.moveTo(x, y - 3.2); ctx.lineTo(x, y + 3.2);
+        ctx.stroke();
+      }
+    }
+
+    if (!reduced) {
+      mouseX += (targetX - mouseX) * .045;
+      mouseY += (targetY - mouseY) * .045;
+      scene.style.setProperty("--mx", `${mouseX.toFixed(1)}px`);
+      scene.style.setProperty("--my", `${mouseY.toFixed(1)}px`);
+      scene.style.setProperty("--scroll-y", `${scrollY.toFixed(1)}px`);
+      frame = requestAnimationFrame(draw);
+    }
+  }
+
+  function onPointer(event) {
+    targetX = (event.clientX / Math.max(width, 1) - .5) * 46;
+    targetY = (event.clientY / Math.max(height, 1) - .5) * 34;
+  }
+  function onScroll() { scrollY = window.scrollY || 0; }
+
+  resize();
+  if (pointerFine && !reduced) window.addEventListener("pointermove", onPointer, { passive: true });
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", resize);
+  if (reduced) draw(0);
+  else frame = requestAnimationFrame(draw);
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) cancelAnimationFrame(frame);
+    else if (!reduced) { lastTime = 0; frame = requestAnimationFrame(draw); }
+  });
+})();
