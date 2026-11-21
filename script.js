@@ -555,9 +555,10 @@ function initParallax() {
     // Smoothly interpolate the scroll position
     currentY += (sy - currentY) * 0.08;
     
-    // Pan the background slowly (15% of scroll speed).
-    // The scale(1.1) in CSS ensures the image is large enough that we never see the edges.
-    bg.style.transform = `translate3d(0, ${currentY * 0.15}px, 0) scale(1.1)`;
+    // REVERSED: Multiplying by -0.15 means as you scroll down (currentY increases),
+    // the background moves UP (negative translateY).
+    // The scale(1.3) in CSS ensures we never see the edges.
+    bg.style.transform = `translate3d(0, ${currentY * -0.15}px, 0) scale(1.3)`;
     
     requestAnimationFrame(loop);
   }
@@ -582,7 +583,7 @@ function init() {
   renderProjects();
   initReveal();
   initStarfield();
-  initParallax();  // <-- Restored
+  initParallax();
   initCardGlow();
   initHeader();
   initNav();

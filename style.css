@@ -67,8 +67,8 @@ a { color: inherit; }
   background-position: center center;
   background-repeat: no-repeat;
   
-  /* Start zoomed in slightly so we have room to pan up and down */
-  transform: scale(1.1);
+  /* Start zoomed in significantly so we have plenty of room to pan without seeing edges */
+  transform: scale(1.3);
   will-change: transform;
 }
 
