@@ -552,12 +552,12 @@ function initParallax() {
   window.addEventListener("scroll", () => { sy = window.scrollY; }, { passive: true });
 
   function loop() {
-    // Smooth the scroll position
+    // Smooth the scroll movement
     currentY += (sy - currentY) * 0.08;
     
-    // Move the background image slowly as you scroll down
-    // This creates the "long strip" panning effect
-    bg.style.transform = `translate3d(0, ${currentY * -0.15}px, 0) scale(1.1)`;
+    // Move the background up slightly at 30% speed.
+    // We use scale(1.2) to ensure the edges never show while moving.
+    bg.style.transform = `translate3d(0, ${currentY * 0.3}px, 0) scale(1.2)`;
     
     requestAnimationFrame(loop);
   }
