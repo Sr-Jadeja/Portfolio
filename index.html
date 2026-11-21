@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Your Name — AI & Machine Learning Portfolio</title>
+<meta name="description" content="Portfolio of Your Name — M.Tech AI student at NIT Jalandhar. Projects in domain-adaptive medical imaging, retrieval-augmented assistants, agentic workflows and time-series forecasting." />
+<meta name="theme-color" content="#05060f" />
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪐</text></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ==================== BACKGROUND LAYERS ==================== -->
+<!-- The JPG background -->
+<div class="space-bg" aria-hidden="true"></div>
+<!-- The dark overlay to keep text readable -->
+<div class="space-overlay" aria-hidden="true"></div>
+<!-- The twinkling canvas stars -->
+<canvas id="starfield" aria-hidden="true"></canvas>
+
+<!-- ==================== HEADER ==================== -->
+<header class="site-header" id="header">
+  <div class="nav-wrap">
+    <a class="brand" href="#top">
+      <span class="brand-mark">◈</span>
+      <span>Your Name</span><!-- REPLACE -->
+    </a>
+    <nav class="nav" id="nav">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#competitions">Competitions</a>
+      <a href="#learning">Learning</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#contact" class="nav-cta">Contact</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ==================== HERO ==================== -->
+  <section class="hero">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow reveal">◈ Hello, I'm</p>
+        <h1 class="hero-name reveal" style="--d:60ms">Your Name</h1><!-- REPLACE -->
+        <p class="hero-headline reveal" style="--d:120ms">
+          I build machine learning systems that <span class="grad">learn, adapt and explain themselves</span>.
+        </p>
+        <p class="hero-intro reveal" style="--d:180ms">
+          M.Tech Artificial Intelligence student at NIT Jalandhar, previously an Associate Business Analyst at CGI.
+          I work on domain-adaptive computer vision, retrieval-augmented assistants and agentic LLM workflows —
+          and I care as much about shipping them as about training them.
+        </p>
+        <div class="hero-actions reveal" style="--d:240ms">
+          <a class="btn btn-primary" href="#projects">Explore Projects</a>
+          <a class="btn btn-ghost is-placeholder" href="#" data-evidence="GitHub profile URL">GitHub</a>
+          <a class="btn btn-ghost is-placeholder" href="#" data-evidence="LinkedIn profile URL">LinkedIn</a>
+          <a class="btn btn-ghost is-placeholder" href="#" data-evidence="Email address">Email</a>
+        </div>
+      </div>
+
+      <aside class="terminal reveal" style="--d:300ms" aria-label="Quick profile">
+        <div class="terminal-bar">
+          <span class="dot red"></span><span class="dot amber"></span><span class="dot green"></span>
+          <span class="terminal-title">~/portfolio — zsh</span>
+        </div>
+        <div class="terminal-body">
+          <p><span class="prompt">➜</span><span class="cmd">whoami</span></p>
+          <p class="out">M.Tech AI student · ML engineer</p>
+          <p><span class="prompt">➜</span><span class="cmd">cat focus.txt</span></p>
+          <p class="out">domain adaptation · RAG · agentic workflows</p>
+          <p><span class="prompt">➜</span><span class="cmd">ls projects/</span></p>
+          <p class="out">polyp-segmentation&nbsp;&nbsp;rag-assistant</p>
+          <p class="out">trip-planner&nbsp;&nbsp;store-sales-forecasting</p>
+          <p><span class="prompt">➜</span><span class="cmd">status --current</span></p>
+          <p class="out">building · learning · shipping<span class="caret"></span></p>
+        </div>
+      </aside>
+    </div>
+
+    <a href="#about" class="scroll-cue" aria-label="Scroll to About">
+      <span></span>
+    </a>
+  </section>
+
+  <!-- ==================== ABOUT ==================== -->
+  <section class="section" id="about">
+    <div class="container">
+      <header class="section-head reveal">
+        <span class="kicker">01 — About</span>
+        <h2>Beyond the <span class="grad">résumé</span></h2>
+        <p>What I actually spend my time building, breaking and reading about.</p>
+      </header>
+
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <p>
+            I'm an AI master's student who came here sideways — my bachelor's is in Petroleum Engineering, and I spent
+            two and a half years in first-line application support at CGI before moving into machine learning full time.
+            That route taught me something useful: I'm comfortable being the person who has to make a system work
+            for real users, not just in a notebook.
+          </p>
+          <p>
+            Right now my research is in <strong>semi-supervised domain adaptation for medical image segmentation</strong> —
+            getting a model trained on one hospital's data to hold up on another's without fresh expert annotations.
+            Outside research I keep building LLM applications: retrieval pipelines that stay grounded in their sources,
+            and agentic workflows that call real tools instead of guessing.
+          </p>
+          <p>
+            I like problems where the interesting part isn't the model architecture but everything around it — the data
+            pipeline, the evaluation, the loss function that actually reflects what you care about, and whether the thing
+            can be deployed at the end.
+          </p>
+        </div>
+
+        <ul class="about-facts reveal" style="--d:120ms">
+          <li><span>Currently</span> M.Tech Artificial Intelligence, NIT Jalandhar</li>
+          <li><span>Previously</span> Associate Business Analyst, CGI Bengaluru</li>
+          <li><span>Researching</span> Domain adaptation &amp; semi-supervised segmentation</li>
+          <li><span>Building</span> RAG systems and agentic LLM workflows</li>
+          <li><span>Learning</span> MLOps — tracking, versioning, compression, deployment</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PROJECTS ==================== -->
+  <section class="section" id="projects">
+    <div class="container">
+      <header class="section-head reveal">
+        <span class="kicker">02 — Missions</span>
+        <h2>Projects</h2>
+        <p>Each card opens a full breakdown: the problem, the objective, what I actually did, and the evidence.</p>
+      </header>
+      <div class="project-grid" id="projectGrid"></div>
+    </div>
+  </section>
+
+  <!-- ==================== COMPETITIONS ==================== -->
+  <section class="section" id="competitions">
+    <div class="container">
+      <header class="section-head reveal">
+        <span class="kicker">03 — Trials</span>
+        <h2>Competitions &amp; Exams</h2>
+        <p>Competitive assessments and challenges, and what each one actually tested.</p>
+      </header>
+
+      <div class="card-grid">
+        <article class="card reveal">
+          <div class="comp-head">
+            <h3>GATE 2025 — Data Science &amp; Artificial Intelligence</h3>
+            <span class="badge">Qualified · Score 506</span>
+          </div>
+          <p class="muted">
+            A national-level engineering entrance examination in India, taken here in the Data Science &amp; AI paper —
+            a deliberate switch away from my Petroleum Engineering background.
+          </p>
+          <h4 class="mini-head">Areas covered</h4>
+          <div class="chips">
+            <span class="chip">Probability &amp; Statistics</span>
+            <span class="chip">Linear Algebra</span>
+            <span class="chip">Machine Learning</span>
+            <span class="chip">AI</span>
+            <span class="chip">Algorithms &amp; DS</span>
+            <span class="chip">Databases</span>
+          </div>
+          <h4 class="mini-head">What I learned</h4>
+          <ul class="m-list">
+            <li>Rebuilding core mathematics and ML theory from the ground up rather than relying on libraries.</li>
+            <li>Working to a long, high-stakes deadline alongside a full-time job — a discipline problem as much as a technical one.</li>
+          </ul>
+          <div class="ev-row">
+            <a class="ev-btn is-placeholder" href="#" data-evidence="GATE 2025 scorecard">Scorecard<span class="ev-tag">placeholder</span></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PRACTICAL LEARNING ==================== -->
+  <section class="section" id="learning">
+    <div class="container">
+      <header class="section-head reveal">
+        <span class="kicker">04 — Flight Log</span>
+        <h2>Practical Learning</h2>
+        <p>Hands-on labs and industry exposure — kept separate from formal certifications.</p>
+      </header>
+
+      <div class="card-grid">
+        <article class="card reveal">
+          <div class="comp-head">
+            <h3>TryHackMe</h3>
+            <span class="badge">Hands-on labs</span>
+          </div>
+          <div class="stat-row">
+            <div class="stat"><strong>—</strong><span>Rooms completed</span></div>
+            <div class="stat"><strong>—</strong><span>Learning paths</span></div>
+            <div class="stat"><strong>—</strong><span>Top 100k rank</span></div>
+          </div>
+          <h4 class="mini-head">Areas covered</h4>
+          <div class="chips">
+            <span class="chip">Networking</span>
+            <span class="chip">Linux</span>
+            <span class="chip">Web fundamentals</span>
+            <span class="chip">Reconnaissance</span>
+          </div>
+          <p class="muted small">Update these figures and the areas list with your real TryHackMe activity before publishing.</p>
+          <div class="ev-row">
+            <a class="ev-btn is-placeholder" href="#" data-evidence="TryHackMe profile URL">TryHackMe profile<span class="ev-tag">placeholder</span></a>
+            <a class="ev-btn is-placeholder" href="#" data-evidence="Write-up link">Selected write-ups<span class="ev-tag">placeholder</span></a>
+          </div>
+        </article>
+
+        <article class="card reveal" style="--d:100ms">
+          <div class="comp-head">
+            <h3>ONGC — Industrial Exposure</h3>
+            <span class="badge">Field training</span>
+          </div>
+          <p class="muted">
+            Hands-on exposure to production engineering workflows at ONGC, Avani Bhavan (Ahmedabad) and IOGPT (Navi Mumbai).
+          </p>
+          <h4 class="mini-head">What I worked with</h4>
+          <div class="chips">
+            <span class="chip">Pressure transient analysis</span>
+            <span class="chip">OFM™</span>
+            <span class="chip">Flow assurance</span>
+            <span class="chip">Nodal analysis</span>
+          </div>
+          <h4 class="mini-head">Why it matters</h4>
+          <ul class="m-list">
+            <li>My first real look at how production optimisation decisions are made from data — and where the data is messy.</li>
+            <li>Gave me the domain intuition I later brought into quantitative, data-driven work.</li>
+          </ul>
+          <div class="ev-row">
+            <a class="ev-btn is-placeholder" href="#" data-evidence="ONGC training certificate">Training certificate<span class="ev-tag">placeholder</span></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CERTIFICATIONS ==================== -->
+  <section class="section" id="certifications">
+    <div class="container">
+      <header class="section-head reveal">
+        <span class="kicker">05 — Credentials</span>
+        <h2>Certifications</h2>
+        <p>Formal credentials, with why I completed each one.</p>
+      </header>
+
+      <div class="card-grid">
+        <article class="card placeholder-card reveal">
+          <span class="ph-badge">Placeholder</span>
+          <h3>Certification name</h3>
+          <p class="muted">Why you completed it — one or two lines on the gap it filled or the goal it served.</p>
+          <h4 class="mini-head">Areas covered</h4>
+          <div class="chips"><span class="chip">Area</span><span class="chip">Area</span><span class="chip">Area</span></div>
+          <div class="ev-row">
+            <a class="ev-btn is-placeholder" href="#" data-evidence="Certificate link">Certificate<span class="ev-tag">placeholder</span></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== ACHIEVEMENTS / COMMUNITY ==================== -->
+  <section class="section" id="achievements">
+    <div class="container">
+      <header class="section-head reveal">
+        <span class="kicker">06 — Impact</span>
+        <h2>Achievements &amp; Community</h2>
+        <p>Responsibilities and contributions where the interesting part is the impact, not the title.</p>
+      </header>
+
+      <div class="card-grid">
+        <article class="card reveal">
+          <div class="comp-head">
+            <h3>Discipline Lead — CGI</h3>
+            <span class="badge">Appointed</span>
+          </div>
+          <p class="muted">
+            Within a first-line application support team serving users across multiple regions, I was appointed lead for
+            one of the four functional disciplines.
+          </p>
+          <h4 class="mini-head">What that involved</h4>
+          <ul class="m-list">
+            <li>Being the coordination point for that discipline — routing issues and keeping investigations consistent across the team.</li>
+            <li>Handling escalations on complex incidents, from initial investigation through to resolution.</li>
+            <li>Supporting teammates in building the troubleshooting judgement the role demands.</li>
+          </ul>
+          <h4 class="mini-head">Why it mattered</h4>
+          <p class="muted small">
+            It turned a support role into an ownership role: fewer repeated failures, faster triage, and a clearer
+            picture of which problems were systemic rather than one-off.
+          </p>
+        </article>
+
+        <article class="card placeholder-card reveal" style="--d:100ms">
+          <span class="ph-badge">Placeholder</span>
+          <h3>Mentoring / talks / volunteering</h3>
+          <p class="muted">
+            Describe the actual accomplishment and the impact — who benefited, what changed, what you contributed.
+          </p>
+          <div class="ev-row">
+            <a class="ev-btn is-placeholder" href="#" data-evidence="Evidence link">Evidence<span class="ev-tag">placeholder</span></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CONTACT ==================== -->
+  <section class="section" id="contact">
+    <div class="container">
+      <header class="section-head reveal">
+        <span class="kicker">07 — Signal</span>
+        <h2>Get in touch</h2>
+        <p>Open to research collaborations, ML engineering roles and interesting problems in general.</p>
+      </header>
+
+      <div class="contact-grid">
+        <a class="card contact-card is-placeholder reveal" href="#" data-evidence="GitHub profile URL">
+          <span class="contact-label">GitHub</span>
+          <span class="contact-value">github.com/your-username</span>
+          <span class="contact-arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="card contact-card is-placeholder reveal" style="--d:80ms" href="#" data-evidence="LinkedIn profile URL">
+          <span class="contact-label">LinkedIn</span>
+          <span class="contact-value">linkedin.com/in/your-username</span>
+          <span class="contact-arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="card contact-card reveal" style="--d:160ms" href="mailto:your.email@example.com">
+          <span class="contact-label">Email</span>
+          <span class="contact-value">your.email@example.com</span>
+          <span class="contact-arrow" aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p>© <span id="year">2026</span> Your Name · Built with plain HTML, CSS and JavaScript.</p><!-- REPLACE -->
+    <a href="#top" class="to-top">Back to top <span aria-hidden="true">↑</span></a>
+  </div>
+</footer>
+
+<!-- ==================== PROJECT MODAL ==================== -->
+<div class="modal" id="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-backdrop" data-close></div>
+  <div class="modal-panel" role="document">
+    <button class="modal-close" data-close aria-label="Close project details">✕</button>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<!-- ==================== TOAST ==================== -->
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<noscript>
+  <div class="noscript">This portfolio uses JavaScript for the project details and animations. Please enable it to see everything.</div>
+</noscript>
+
+<script src="script.js"></script>
+</body>
+</html>
