@@ -50,104 +50,56 @@ body {
 a { color: inherit; }
 
 /* ============================================================
-   BACKGROUND: Deep Space Nebula
+   BACKGROUND: supplied Milky Way photograph
+   Slow cinematic drift; the photo provides all galaxy detail.
    ============================================================ */
 
 .space-bg {
   position: fixed;
-  inset: 0;
+  inset: -3%;
   z-index: -2;
   overflow: hidden;
-  background-color: #030008;
-  /* Base layer of deep space gradients */
-  background-image: 
-    radial-gradient(circle at 15% 30%, rgba(46, 17, 82, 0.4) 0%, transparent 50%),
-    radial-gradient(circle at 85% 70%, rgba(17, 41, 82, 0.4) 0%, transparent 50%);
-}
-
-/* Complex nebula clouds using radial gradients to simulate the provided image */
-.nebula {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(100px);
-  opacity: 0.65;
-  will-change: transform, translate;
-  mix-blend-mode: screen;
-}
-
-.nebula-a {
-  width: 80vw; height: 80vw; max-width: 1000px; max-height: 1000px;
-  top: -10%; left: -10%;
-  /* Deep violet/purple */
-  background: radial-gradient(circle, rgba(107, 33, 168, 0.4) 0%, rgba(76, 29, 149, 0.2) 40%, transparent 70%);
-  animation: drift-a 35s ease-in-out infinite alternate;
-}
-
-.nebula-b {
-  width: 70vw; height: 70vw; max-width: 900px; max-height: 900px;
-  bottom: -20%; right: -10%;
-  /* Magenta/Pink glow */
-  background: radial-gradient(circle, rgba(192, 38, 211, 0.3) 0%, rgba(134, 25, 143, 0.15) 40%, transparent 70%);
-  animation: drift-b 42s ease-in-out infinite alternate-reverse;
-}
-
-.nebula-c {
-  width: 60vw; height: 60vw; max-width: 800px; max-height: 800px;
-  top: 30%; left: 20%;
-  /* Cyan/Blue accent */
-  background: radial-gradient(circle, rgba(14, 165, 233, 0.25) 0%, rgba(2, 132, 199, 0.1) 40%, transparent 60%);
-  animation: drift-c 38s ease-in-out infinite alternate;
-}
-
-.nebula-d {
-  width: 50vw; height: 50vw; max-width: 700px; max-height: 700px;
-  bottom: 10%; left: 10%;
-  /* Deep navy/indigo */
-  background: radial-gradient(circle, rgba(49, 46, 129, 0.4) 0%, transparent 60%);
-  animation: drift-a 28s ease-in-out infinite alternate-reverse;
-}
-
-/* Subtle noise overlay to give the nebula a realistic, non-plastic texture */
-.noise-overlay {
-  position: absolute;
-  inset: 0;
-  opacity: 0.15;
   pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-}
-
-@keyframes drift-a {
-  from { transform: translate3d(0, 0, 0) scale(1); }
-  to   { transform: translate3d(6%, 4%, 0) scale(1.1); }
-}
-@keyframes drift-b {
-  from { transform: translate3d(0, 0, 0) scale(1); }
-  to   { transform: translate3d(-5%, -6%, 0) scale(1.05); }
-}
-@keyframes drift-c {
-  from { transform: translate3d(0, 0, 0) scale(1); }
-  to   { transform: translate3d(-4%, 5%, 0) scale(1.08); }
-}
-
-.grid-veil {
-  position: absolute;
-  inset: 0;
+  background-color: #02040c;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 64px 64px;
-  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, #000 0%, transparent 85%);
-          mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, #000 0%, transparent 85%);
-  opacity: 0.6;
+    linear-gradient(180deg, rgba(2, 4, 12, 0.28), rgba(2, 4, 12, 0.48)),
+    url("./milky-way-galaxy-night.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  transform: scale(1.025);
+  transform-origin: center;
+  animation: galaxy-drift 70s ease-in-out infinite alternate;
+  will-change: transform, background-position;
 }
 
-#starfield {
-  position: fixed;
+.space-bg::after {
+  content: "";
+  position: absolute;
   inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  width: 100%;
-  height: 100%;
+  background:
+    radial-gradient(ellipse at 50% 42%, transparent 20%, rgba(1, 3, 12, 0.18) 78%),
+    linear-gradient(90deg, rgba(1, 3, 12, 0.22), transparent 48%, rgba(1, 3, 12, 0.18));
+  opacity: 0.9;
+}
+
+@keyframes galaxy-drift {
+  0% {
+    transform: scale(1.025) translate3d(0, 0, 0);
+    background-position: 50% 48%;
+  }
+  50% {
+    transform: scale(1.075) translate3d(-0.35%, 0.2%, 0);
+    background-position: 51% 50%;
+  }
+  100% {
+    transform: scale(1.11) translate3d(0.25%, -0.25%, 0);
+    background-position: 49% 52%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .space-bg { animation: none; transform: none; }
 }
 
 /* ============================================================
@@ -170,16 +122,6 @@ a { color: inherit; }
   -webkit-backdrop-filter: blur(14px) saturate(140%);
           backdrop-filter: blur(14px) saturate(140%);
   border-bottom-color: var(--border);
-}
-
-.progress {
-  position: absolute;
-  left: 0; bottom: -1px;
-  height: 2px;
-  width: 0%;
-  background: var(--grad);
-  box-shadow: 0 0 12px rgba(110, 231, 255, 0.5);
-  transition: width 0.1s linear;
 }
 
 .nav-wrap {

@@ -354,14 +354,8 @@ function initGlobalHandlers() {
 /* ---------- Header / scroll progress ------------------------- */
 function initHeader() {
   const header = $("#header");
-  const progress = $("#progress");
   function onScroll() {
-    const y = window.scrollY;
-    if (header) header.classList.toggle("scrolled", y > 12);
-    if (progress) {
-      const h = document.documentElement.scrollHeight - window.innerHeight;
-      progress.style.width = (h > 0 ? (y / h) * 100 : 0) + "%";
-    }
+    if (header) header.classList.toggle("scrolled", window.scrollY > 12);
   }
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
@@ -601,8 +595,6 @@ function init() {
 
   renderProjects();
   initReveal();
-  initStarfield();
-  initParallax();
   initCardGlow();
   initHeader();
   initNav();
