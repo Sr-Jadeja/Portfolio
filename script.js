@@ -540,6 +540,30 @@ function initStarfield() {
   else requestAnimationFrame(frame);
 }
 
+/* ---------- Background Parallax (Scroll effect) -------------- */
+function initParallax() {
+  if (prefersReducedMotion) return;
+  const bg = $(".space-bg");
+  if (!bg) return;
+
+  let sy = window.scrollY;
+  let currentY = sy;
+
+  window.addEventListener("scroll", () => { sy = window.scrollY; }, { passive: true });
+
+  function loop() {
+    // Smoothly interpolate the scroll position
+    currentY += (sy - currentY) * 0.08;
+    
+    // Pan the background slowly (15% of scroll speed).
+    // The scale(1.1) in CSS ensures the image is large enough that we never see the edges.
+    bg.style.transform = `translate3d(0, ${currentY * 0.15}px, 0) scale(1.1)`;
+    
+    requestAnimationFrame(loop);
+  }
+  loop();
+}
+
 /* ---------- Project card cursor glow ------------------------- */
 function initCardGlow() {
   $$(".project-card").forEach((card) => {
@@ -558,6 +582,7 @@ function init() {
   renderProjects();
   initReveal();
   initStarfield();
+  initParallax();  // <-- Restored
   initCardGlow();
   initHeader();
   initNav();

@@ -1,5 +1,5 @@
 /* ============================================================
-   Portfolio — Galaxy Background (Fixed Full-Page)
+   Portfolio — Galaxy Background (Parallax Restored)
    ============================================================ */
 
 :root {
@@ -48,7 +48,7 @@ body {
 a { color: inherit; }
 
 /* ============================================================
-   BACKGROUND: User JPG Fixed to Viewport
+   BACKGROUND: User JPG with Parallax
    ============================================================ */
 
 .space-bg {
@@ -63,11 +63,13 @@ a { color: inherit; }
   /* Make sure your image is named exactly 'bg.jpg' */
   background-image: url('bg.jpg');
   
-  /* This forces the image to always cover the screen, no matter how much you scroll */
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-  background-attachment: fixed;
+  
+  /* Start zoomed in slightly so we have room to pan up and down */
+  transform: scale(1.1);
+  will-change: transform;
 }
 
 .space-overlay {
